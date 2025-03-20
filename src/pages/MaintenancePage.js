@@ -1,9 +1,12 @@
 import React from "react";
-import { Box, Typography, Container, CircularProgress } from "@mui/material";
+import { Box, Typography, Container, CircularProgress, useMediaQuery } from "@mui/material";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 
 const MaintenancePage = () => {
+  const isMobile = useMediaQuery("(max-width:600px)");
+  const isTablet = useMediaQuery("(max-width:960px)");
+
   return (
     <Box
       sx={{
@@ -15,7 +18,7 @@ const MaintenancePage = () => {
         textAlign: "center",
         bgcolor: "#0a0a0a",
         color: "#00eaff",
-        px: { xs: 2, sm: 4, md: 6 },
+        px: 2,
         position: "relative",
       }}
     >
@@ -34,9 +37,9 @@ const MaintenancePage = () => {
           zIndex: 1,
           backdropFilter: "blur(10px)",
           borderRadius: "12px",
-          p: { xs: 2, sm: 3, md: 4 },
+          p: isMobile ? 2 : isTablet ? 3 : 4,
+          maxWidth: isMobile ? "90%" : isTablet ? "80%" : "60%",
           textAlign: "center",
-          maxWidth: { xs: "90%", sm: "80%", md: "60%" },
         }}
       >
         {/* Glitch Effect Title */}
@@ -46,36 +49,36 @@ const MaintenancePage = () => {
             fontWeight: "bold",
             mb: 3,
             letterSpacing: 2,
+            fontSize: isMobile ? "2.5rem" : isTablet ? "3.5rem" : "5rem",
             fontFamily: "'Orbitron', sans-serif",
             background: "linear-gradient(90deg, #00eaff, #00ff99)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             textShadow: "0 0 15px rgba(0, 234, 255, 0.8)",
             animation: "glitch 1.5s infinite alternate",
-            fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
           }}
         >
           Triserge Technologies
         </Typography>
 
         {/* Animated Loader */}
-        <CircularProgress size={80} sx={{ color: "#00ff99", mb: 3 }} />
+        <CircularProgress size={isMobile ? 50 : isTablet ? 65 : 80} sx={{ color: "#00ff99", mb: 3 }} />
 
         {/* Maintenance Message */}
         <Typography
-          variant="h4"
+          variant={isMobile ? "h6" : isTablet ? "h5" : "h4"}
           sx={{
             mb: 2,
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 500,
             color: "#ffffff",
             textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
-            fontSize: { xs: "1.2rem", sm: "1.5rem", md: "2rem" },
           }}
         >
-          <span style={{ color: "#00eaff" }}>We're upgrading our systems</span> to bring you the
-          future.<br />
-          <p style={{ fontSize: "1rem", color: "#c2f0ff", marginBottom: "1rem" }}>
+          <span style={{ color: "#00eaff" }}>We're upgrading our systems</span> to bring you the future.<br />
+          <p
+            style={{ fontSize: isMobile ? "0.9rem" : "1.1rem", color: "#c2f0ff", marginBottom: "16px" }}
+          >
             Our tech team is working on new enhancements. Stay tuned for an {" "}
             <span style={{ color: "#00ff99", fontWeight: "bold" }}>optimized experience.</span>
           </p>
@@ -83,9 +86,9 @@ const MaintenancePage = () => {
 
         {/* Contact Email */}
         <Typography
-          variant="body2"
+          variant={isMobile ? "body2" : "body1"}
           sx={{
-            fontSize: { xs: "1rem", sm: "1.2rem" },
+            fontSize: isMobile ? "1rem" : "1.2rem",
             fontWeight: "bold",
             mt: 2,
             color: "#ffffff",
