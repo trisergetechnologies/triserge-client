@@ -42,7 +42,7 @@ const MaintenancePage = () => {
       >
         {/* Glitch Effect Title */}
         <Typography
-          variant="h4"
+          variant="h2"
           sx={{
             fontWeight: "bold",
             mb: 2,
