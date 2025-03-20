@@ -17,6 +17,7 @@ const MaintenancePage = () => {
         color: "#00eaff",
         px: 2,
         position: "relative",
+        overflow: "hidden",
       }}
     >
       {/* 3D Animated Background */}
@@ -34,66 +35,68 @@ const MaintenancePage = () => {
           zIndex: 1,
           backdropFilter: "blur(10px)",
           borderRadius: "12px",
-          p: 3,
+          p: { xs: 2, sm: 3 },
           textAlign: "center",
+          maxWidth: "90%",
         }}
       >
         {/* Glitch Effect Title */}
         <Typography
-          variant="h1"
+          variant="h4"
           sx={{
             fontWeight: "bold",
-            mb: 3,
-            letterSpacing: 2,
+            mb: 2,
+            letterSpacing: 1,
             fontFamily: "'Orbitron', sans-serif",
             background: "linear-gradient(90deg, #00eaff, #00ff99)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             textShadow: "0 0 15px rgba(0, 234, 255, 0.8)",
             animation: "glitch 1.5s infinite alternate",
+            fontSize: { xs: "2rem", sm: "3rem" },
           }}
         >
           Triserge Technologies
         </Typography>
 
         {/* Animated Loader */}
-        <CircularProgress size={80} sx={{ color: "#00ff99", mb: 3 }} />
+        <CircularProgress size={60} sx={{ color: "#00ff99", mb: 3 }} />
 
         {/* Maintenance Message */}
         <Typography
-          variant="h4"
+          variant="h6"
           sx={{
             mb: 2,
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 500,
             color: "#ffffff",
             textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
+            fontSize: { xs: "1rem", sm: "1.2rem" },
           }}
         >
           <span style={{ color: "#00eaff" }}>We're upgrading our systems</span> to bring you the
           future.<br/>
-          <p
-            style={{"fontSize": "1.1rem", "color": "#c2f0ff", "mb": 3}}
-          >
-          Our tech team is working on new enhancements. Stay tuned for an{" "}
-          <span style={{ color: "#00ff99", fontWeight: "bold" }}>optimized experience.</span>
-          </p>
         </Typography>
-
-
+        <Typography
+          sx={{ fontSize: { xs: "0.9rem", sm: "1.1rem" }, color: "#c2f0ff", mb: 3 }}
+        >
+          Our tech team is working on new enhancements. Stay tuned for an
+          <span style={{ color: "#00ff99", fontWeight: "bold" }}> optimized experience.</span>
+        </Typography>
 
         {/* Contact Email */}
         <Typography
           variant="body2"
           sx={{
-            fontSize: "1.2rem",
+            fontSize: { xs: "1rem", sm: "1.2rem" },
             fontWeight: "bold",
             mt: 2,
             color: "#ffffff",
             textShadow: "0 0 5px rgba(255, 255, 255, 0.5)",
+            wordBreak: "break-word",
           }}
         >
-          For queries, reach us at:{" "}
+          For queries, reach us at: {" "}
           <span
             style={{
               color: "#00ff99",
