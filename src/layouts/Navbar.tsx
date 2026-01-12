@@ -52,13 +52,20 @@ const Navbar = ({ scrollToServices, scrollToContact }: NavbarProps) => {
         transition={{ duration: 0.9, ease: EASE_SMOOTH }}
         className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10"
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
           {/* Logo */}
           <div
             onClick={() => navigate("/")}
-            className="text-2xl font-extrabold text-white tracking-wide cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer"
           >
-            Triserge<span className="text-blue-600">.</span>
+            <img
+              src="/images/logo/Triserge_bg.png"
+              alt="Triserge Logo"
+              className="h-12 w-auto object-contain"
+            />
+            <span className="text-2xl font-extrabold text-white tracking-wide">
+              Triserge<span className="text-blue-600">.</span>
+            </span>
           </div>
 
           {/* Desktop Menu */}
@@ -107,73 +114,72 @@ const Navbar = ({ scrollToServices, scrollToContact }: NavbarProps) => {
 
       {/* Mobile Drawer */}
       {/* Mobile Drawer */}
-<AnimatePresence>
-  {isOpen && (
-    <>
-      {/* Backdrop */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={() => setIsOpen(false)}
-        className="fixed inset-0 bg-black/70 z-40"
-      />
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/70 z-40"
+            />
 
-      {/* Drawer */}
-      <motion.div
-        initial={{ y: "-100%" }}
-        animate={{ y: 0 }}
-        exit={{ y: "-100%" }}
-        transition={{ duration: 0.6, ease: EASE_SMOOTH }}
-        className="fixed top-0 left-0 w-full h-screen bg-[#050B18] z-50 px-6"
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between h-20 border-b border-white/10">
-          {/* Logo (Mobile) */}
-          <div
-            onClick={() => {
-              navigate("/");
-              setIsOpen(false);
-            }}
-            className="text-2xl font-extrabold text-white tracking-wide cursor-pointer"
-          >
-            Triserge<span className="text-blue-600">.</span>
-          </div>
+            {/* Drawer */}
+            <motion.div
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.6, ease: EASE_SMOOTH }}
+              className="fixed top-0 left-0 w-full h-screen bg-[#050B18] z-50 px-6"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between h-20 border-b border-white/10">
+                {/* Logo (Mobile) */}
+                <div
+                  onClick={() => {
+                    navigate("/");
+                    setIsOpen(false);
+                  }}
+                  className="text-2xl font-extrabold text-white tracking-wide cursor-pointer"
+                >
+                  Triserge<span className="text-blue-600">.</span>
+                </div>
 
-          {/* Close */}
-          <button
-            onClick={() => setIsOpen(false)}
-            className="text-white text-3xl leading-none"
-            aria-label="Close menu"
-          >
-            ×
-          </button>
-        </div>
+                {/* Close */}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-white text-3xl leading-none"
+                  aria-label="Close menu"
+                >
+                  ×
+                </button>
+              </div>
 
-        {/* Menu */}
-        <ul className="mt-12 space-y-8 text-lg font-medium text-white">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                onClick={(e) => handleNavClick(item.href, e)}
-                className="block hover:text-blue-600 transition"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+              {/* Menu */}
+              <ul className="mt-12 space-y-8 text-lg font-medium text-white">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(item.href, e)}
+                      className="block hover:text-blue-600 transition"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
 
-        {/* CTA */}
-        <button className="mt-12 w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 font-medium text-white shadow-lg hover:scale-[1.04] transition">
-          Book Meeting
-        </button>
-      </motion.div>
-    </>
-  )}
-</AnimatePresence>
-
+              {/* CTA */}
+              <button className="mt-12 w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 font-medium text-white shadow-lg hover:scale-[1.04] transition">
+                Book Meeting
+              </button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
