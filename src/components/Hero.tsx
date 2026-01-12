@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export const EASE_SMOOTH: Easing = [0.16, 0.77, 0.47, 0.97];
+
+
 
 const floatingTags = [
   { label: "API </> Code", x: "60%", y: "20%", delay: 0 },
@@ -18,9 +21,9 @@ const floatingTags = [
 ];
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="relative flex min-h-[85svh] sm:min-h-[90svh] lg:min-h-screen overflow-hidden bg-[#050B18]">
-      
       {/* Background Grid */}
       {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px] md:bg-[size:60px_60px]" /> */}
 
@@ -63,7 +66,6 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-6 lg:px-8">
         <div className="max-w-2xl pt-8 pb-2 sm:py-12">
-
           <motion.div
             initial="hidden"
             animate="visible"
@@ -132,16 +134,24 @@ export default function Hero() {
               }}
               className="mt-10 flex flex-col gap-4 sm:flex-row"
             >
-              <button className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg hover:scale-[1.04] transition">
+              <button
+                onClick={() =>
+                  navigate("/", { state: { scrollTo: "contact" } })
+                }
+                className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg hover:scale-[1.04] transition"
+              >
                 Get Started
               </button>
 
-              <button className="rounded-xl border border-white/20 px-8 py-4 font-medium text-white hover:bg-white/5 transition">
+              <button
+               onClick={() =>
+                  navigate("/", { state: { scrollTo: "services" } })
+                }
+               className="rounded-xl border border-white/20 px-8 py-4 font-medium text-white hover:bg-white/5 transition">
                 View Services
               </button>
             </motion.div>
           </motion.div>
-
         </div>
       </div>
     </section>

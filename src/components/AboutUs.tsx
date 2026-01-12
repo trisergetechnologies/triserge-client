@@ -1,11 +1,11 @@
 "use client";
 
 import {
+  animate,
   motion,
-  type Variants,
   useMotionValue,
   useTransform,
-  animate,
+  type Variants,
 } from "framer-motion";
 
 /* ---------------- Animations ---------------- */
@@ -168,7 +168,7 @@ export default function AboutUs() {
 
             {/* ✅ Know More Button */}
             <motion.a
-              href="/about"
+              href="/about-us"
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
