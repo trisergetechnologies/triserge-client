@@ -1,10 +1,16 @@
+"use client";
+
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import type { Easing } from "framer-motion";
 
 interface NavbarProps {
   scrollToServices?: () => void;
   scrollToContact?: () => void;
 }
+
+const EASE_SMOOTH: Easing = [0.16, 0.77, 0.47, 0.97];
 
 const Navbar = ({ scrollToServices, scrollToContact }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,25 +19,19 @@ const Navbar = ({ scrollToServices, scrollToContact }: NavbarProps) => {
 
   const handleNavClick = (href: string, e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     if (href === "#services") {
       if (location.pathname !== "/") {
         navigate("/", { state: { scrollTo: "services" } });
-      } else if (scrollToServices) {
-        scrollToServices();
-      }
-    } 
-    else if (href === "#contact") {
+      } else scrollToServices?.();
+    } else if (href === "#contact") {
       if (location.pathname !== "/") {
         navigate("/", { state: { scrollTo: "contact" } });
-      } else if (scrollToContact) {
-        scrollToContact();
-      }
-    }
-    else {
+      } else scrollToContact?.();
+    } else {
       navigate(href);
     }
-    
+
     setIsOpen(false);
   };
 
@@ -44,108 +44,137 @@ const Navbar = ({ scrollToServices, scrollToContact }: NavbarProps) => {
   ];
 
   return (
-    <nav className="bg-[#01303f] shadow-4xl fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <div className="text-4xl font-bold text-[#d4f0fc]">Triserge</div>
+    <>
+      {/* Navbar */}
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: EASE_SMOOTH }}
+        className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10"
+      >
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          {/* Logo */}
+          <div
+            onClick={() => navigate("/")}
+            className="text-2xl font-extrabold text-white tracking-wide cursor-pointer"
+          >
+            Triserge<span className="text-blue-600">.</span>
+          </div>
 
-        {/* Desktop Menu */}
-        <div className="flex items-center gap-12 ml-auto">
-          <ul className="hidden md:flex gap-6 items-center ml-auto font-medium text-lg text-white">
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex items-center gap-10 text-lg font-medium text-slate-300">
             {navItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.href} className="relative group">
                 <a
                   href={item.href}
-                  className="hover:text-blue-600"
                   onClick={(e) => handleNavClick(item.href, e)}
+                  className="hover:text-white transition"
                 >
                   {item.label}
                 </a>
+
+                {/* Animated underline */}
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-blue-600 to-purple transition-all duration-300 group-hover:w-full" />
               </li>
             ))}
           </ul>
-        </div>
 
-        {/* Mobile Toggle */}
-        <div className="md:hidden">
-          <button 
-            onClick={() => setIsOpen(!isOpen)} 
-            aria-label="Toggle menu"
-            className="text-white focus:outline-none"
+          {/* CTA
+          <div className="hidden md:flex">
+            <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 font-medium text-white shadow-lg hover:scale-[1.04] transition">
+              Book Meeting
+            </button>
+          </div> */}
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="md:hidden text-white"
+            aria-label="Open menu"
           >
             <svg
-              className="w-6 h-6"
+              width="26"
+              height="26"
               fill="none"
               stroke="currentColor"
-              viewBox="0 0 24 24"
+              strokeWidth="2"
             >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
+              <path d="M4 6h18M4 13h18M4 20h18" />
             </svg>
           </button>
         </div>
-      </div>
+      </motion.nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden fixed left-0 top-0 h-full w-64 bg-[#01303f] shadow-sm transform transition-transform duration-300 ease-in-out z-50 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+      {/* Mobile Drawer */}
+      {/* Mobile Drawer */}
+<AnimatePresence>
+  {isOpen && (
+    <>
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={() => setIsOpen(false)}
+        className="fixed inset-0 bg-black/70 z-40"
+      />
+
+      {/* Drawer */}
+      <motion.div
+        initial={{ y: "-100%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "-100%" }}
+        transition={{ duration: 0.6, ease: EASE_SMOOTH }}
+        className="fixed top-0 left-0 w-full h-screen bg-[#050B18] z-50 px-6"
       >
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-700">
-          <div className="text-2xl font-bold text-white">Triserge</div>
+        {/* Header */}
+        <div className="flex items-center justify-between h-20 border-b border-white/10">
+          {/* Logo (Mobile) */}
+          <div
+            onClick={() => {
+              navigate("/");
+              setIsOpen(false);
+            }}
+            className="text-2xl font-extrabold text-white tracking-wide cursor-pointer"
+          >
+            Triserge<span className="text-blue-600">.</span>
+          </div>
+
+          {/* Close */}
           <button
             onClick={() => setIsOpen(false)}
-            className="text-white font-medium text-2xl focus:outline-none"
+            className="text-white text-3xl leading-none"
             aria-label="Close menu"
           >
             ×
           </button>
         </div>
 
-        <ul className="p-4 space-y-4 text-white font-medium">
+        {/* Menu */}
+        <ul className="mt-12 space-y-8 text-lg font-medium text-white">
           {navItems.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
-                className="block py-2 px-4 hover:bg-blue-600 transition-colors duration-200 rounded-md"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href, e);
-                }}
+                onClick={(e) => handleNavClick(item.href, e)}
+                className="block hover:text-blue-600 transition"
               >
                 {item.label}
               </a>
             </li>
           ))}
-          <li>
-            <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-md font-semibold hover:opacity-75 transition-opacity duration-200">
-              Book Meeting
-            </button>
-          </li>
         </ul>
-      </div>
 
-      {/* Backdrop overlay */}
-      {isOpen && (
-        <div
-          className="md:hidden fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-    </nav>
+        {/* CTA */}
+        <button className="mt-12 w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 font-medium text-white shadow-lg hover:scale-[1.04] transition">
+          Book Meeting
+        </button>
+      </motion.div>
+    </>
+  )}
+</AnimatePresence>
+
+    </>
   );
 };
 

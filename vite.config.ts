@@ -10,6 +10,6 @@ export default defineConfig({
   ],
   server: {
     port: 3005,
-    host: 'triserge.com'
+    host: 'localhost',
   }
 })

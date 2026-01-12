@@ -67,7 +67,7 @@ export default function FeaturesSection() {
     const container = containerRef.current;
     if (!container) return;
 
-    const scrollSpeed = 50; // px per second
+    const scrollSpeed = 50;
     let lastTimestamp = 0;
 
     const animateScroll = (timestamp: number) => {
@@ -94,9 +94,7 @@ export default function FeaturesSection() {
 
     const handleInteractionStart = () => {
       isInteractingRef.current = true;
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
 
     const handleInteractionEnd = () => {
@@ -106,11 +104,8 @@ export default function FeaturesSection() {
       animationRef.current = requestAnimationFrame(animateScroll);
     };
 
-    // Mouse events
     container.addEventListener('mouseenter', handleInteractionStart);
     container.addEventListener('mouseleave', handleInteractionEnd);
-
-    // Touch events
     container.addEventListener('touchstart', handleInteractionStart, { passive: true });
     container.addEventListener('touchend', handleInteractionEnd, { passive: true });
     container.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
@@ -119,12 +114,8 @@ export default function FeaturesSection() {
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      
-      // Clean up mouse events
       container.removeEventListener('mouseenter', handleInteractionStart);
       container.removeEventListener('mouseleave', handleInteractionEnd);
-      
-      // Clean up touch events
       container.removeEventListener('touchstart', handleInteractionStart);
       container.removeEventListener('touchend', handleInteractionEnd);
       container.removeEventListener('touchcancel', handleInteractionEnd);
@@ -132,17 +123,17 @@ export default function FeaturesSection() {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 py-16 overflow-hidden">
-      <div className="absolute top-4 right-6 text-slate-500 text-sm hidden sm:block">
+    <section className="relative bg-[#050B18] py-16 overflow-hidden">
+      <div className="absolute top-4 right-6 text-slate-400 text-sm hidden sm:block">
         Scroll to see more →
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl text-white font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
             Key Features
           </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-cyan-300">
             Explore powerful tools built to accelerate your business
           </p>
         </div>
@@ -164,7 +155,9 @@ export default function FeaturesSection() {
               >
                 <div className="flex flex-col h-full">
                   <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-lg font-semibold text-slate-800 mb-2">{feature.title}</h3>
+                  <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                    {feature.title}
+                  </h3>
                   <p className="text-slate-600">{feature.description}</p>
                 </div>
               </div>

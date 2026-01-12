@@ -93,8 +93,22 @@ export default function TechnologiesSection() {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 overflow-hidden">
+      
+      {/* Background (same as About section) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0c29] via-[#050B18] to-[#050B18]" />
+
+      {/* Subtle dotted texture */}
+      <div
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(255,255,255,0.6) 0.6px, transparent 0.6px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,16 +116,16 @@ export default function TechnologiesSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white bg-clip-text">
             Our Technology Stack
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-cyan-300 max-w-2xl mx-auto">
             We leverage cutting-edge technologies to build robust, scalable solutions
           </p>
         </motion.div>
 
         <div className="mb-8 flex justify-center">
-          <div className="inline-flex rounded-xl bg-gray-100 p-1">
+          <div className="inline-flex rounded-xl bg-white/10 backdrop-blur p-1 border border-white/15">
             {technologies.map((tech, index) => (
               <motion.button
                 key={tech.category}
@@ -120,8 +134,8 @@ export default function TechnologiesSection() {
                 onClick={() => setActiveCategory(index)}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
                   activeCategory === index
-                    ? `bg-white text-gray-900 shadow-sm`
-                    : "text-gray-600 hover:text-gray-800"
+                    ? "bg-white text-gray-900 shadow-sm"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 {tech.category}
@@ -163,24 +177,7 @@ export default function TechnologiesSection() {
           transition={{ delay: 0.3 }}
           viewport={{ once: true }}
           className="mt-12 text-center"
-        >
-          {/* <h3 className="text-xl font-semibold text-gray-700 mb-4">
-            Trusted by leading companies worldwide
-          </h3>
-          <div className="flex flex-wrap justify-center gap-8 opacity-70">
-            {["Google", "Microsoft", "Amazon", "Apple", "Netflix", "Uber"].map(
-              (company) => (
-                <motion.div
-                  key={company}
-                  whileHover={{ scale: 1.1 }}
-                  className="text-gray-500 font-medium text-lg"
-                >
-                  {company}
-                </motion.div>
-              )
-            )}
-          </div> */}
-        </motion.div>
+        />
       </div>
     </section>
   );

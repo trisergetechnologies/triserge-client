@@ -1,170 +1,195 @@
-import { motion } from 'framer-motion';
+"use client";
 
-// Animation variants remain same
-const sectionVariants = {
-  hidden: { opacity: 0 },
+import {
+  motion,
+  type Variants,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
+
+/* ---------------- Animations ---------------- */
+
+const sectionVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.22,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
   visible: {
     opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
     transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.2
-    }
-  }
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { 
-      type: 'spring', 
-      stiffness: 100,
-      damping: 20
-    }
-  }
+const wordVariants: Variants = {
+  hidden: { y: "100%", opacity: 0 },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
+
+/* ---------------- Data ---------------- */
 
 const stats = [
-  { id: 1, label: 'Projects Completed', value: '250', suffix: '+' },
-  { id: 2, label: 'Team Members', value: '50', suffix: '+' },
-  { id: 3, label: 'Years Experience', value: '8', suffix: '' },
-  { id: 4, label: 'Client Retention', value: '95', suffix: '%' },
+  { id: 1, label: "Projects Completed", value: "50", suffix: "+" },
+  { id: 2, label: "Team Members", value: "20", suffix: "+" },
+  { id: 3, label: "Years Experience", value: "5", suffix: "+" },
+  { id: 4, label: "Client Retention", value: "98", suffix: "%" },
 ];
 
-interface StatsType {
-  id: number;
-  label: string;
-  value: string;
-  suffix: string;
+/* ---------------- 3D Card ---------------- */
+
+function StatCard({ value, suffix, label }: any) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-50, 50], [10, -10]);
+  const rotateY = useTransform(x, [-50, 50], [-10, 10]);
+
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => Math.floor(v));
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      onViewportEnter={() => {
+        count.set(0);
+        animate(count, Number(value), {
+          duration: 1.8,
+          ease: [0.22, 1, 0.36, 1],
+        });
+      }}
+      viewport={{ once: true }}
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        x.set(e.clientX - rect.left - rect.width / 2);
+        y.set(e.clientY - rect.top - rect.height / 2);
+      }}
+      onMouseLeave={() => {
+        x.set(0);
+        y.set(0);
+      }}
+      style={{ rotateX, rotateY }}
+      whileHover={{ scale: 1.05 }}
+      className="relative rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-xl shadow-xl transition will-change-transform"
+    >
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 hover:opacity-100 transition blur-xl" />
+
+      <div className="relative">
+        <div className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <motion.span>{rounded}</motion.span>
+          {suffix}
+        </div>
+        <div className="mt-2 text-sm font-medium text-slate-300">
+          {label}
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
-const AboutUs = () => {
+/* ---------------- Component ---------------- */
+
+export default function AboutUs() {
+  const heading = "Pioneering Digital Innovation".split(" ");
+
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 to-blue-50 py-12 md:py-24 overflow-hidden">
-      {/* Light theme gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-200/20 to-cyan-300/20" />
+    <section className="relative overflow-hidden py-20 md:py-28">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0c29] via-[#050B18] to-[#050B18]" />
 
-      {/* Light background pattern */}
-      <div className="absolute inset-0 opacity-15 pattern-grid-lg text-slate-300/30" />
-
-      {/* Animated radial gradient */}
-      <motion.div 
-        className="absolute left-1/2 top-0 -ml-[400px] w-[800px] h-[800px] bg-gradient-radial from-blue-200/10 to-transparent rounded-full"
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 40,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+        className="absolute -top-[300px] -left-[300px] h-[800px] w-[800px] rounded-full border border-blue-500/10"
       />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div 
-          className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center"
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[-400px] right-[-400px] h-[900px] w-[900px] rounded-full border border-purple-500/10"
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <motion.div
+          className="grid items-center gap-16 lg:grid-cols-2"
           initial="hidden"
           whileInView="visible"
+          viewport={{ once: true }}
           variants={sectionVariants}
-          viewport={{ once: true, margin: "-50px" }}
         >
-          {/* Text Content */}
-          <motion.div 
-            className="space-y-4 md:space-y-8"
-            variants={itemVariants}
-          >
-            <motion.h2 
-              className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent"
+          {/* Left */}
+          <motion.div className="space-y-8" variants={sectionVariants}>
+            <motion.span
               variants={itemVariants}
+              className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-blue-300 backdrop-blur"
             >
-              Pioneering Digital Innovation
+              About Triserge
+            </motion.span>
+
+            <motion.h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 overflow-hidden">
+              {heading.map((word, i) => (
+                <span key={i} className="inline-block overflow-hidden mr-2">
+                  <motion.span variants={wordVariants} className="inline-block">
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
             </motion.h2>
-            
-            <motion.p 
-              className="text-lg text-slate-600"
+
+            {/* ✅ Enhanced paragraph */}
+            <motion.p
               variants={itemVariants}
+              className="max-w-xl text-lg text-slate-300"
             >
-              At Triserge, we combine cutting-edge technology with deep industry expertise 
-              to deliver transformative digital solutions. Founded in 2015, we've been 
-              at the forefront of enterprise software development and AI integration.
+              We blend cloud-native engineering, AI systems, and modern software
+              architecture to build digital platforms that scale insanely well.
+              <br />
+              <span className="block mt-3 text-slate-400">
+                From early-stage startups to enterprise ecosystems, we design,
+                build, and evolve products that are fast, secure, and future-ready.
+              </span>
             </motion.p>
 
-            <motion.ul 
-              className="space-y-6"
-              variants={sectionVariants}
+            {/* ✅ Know More Button */}
+            <motion.a
+              href="/about"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex w-fit items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:shadow-xl"
             >
-              <motion.li 
-                className="flex items-center space-x-4 group"
-                variants={itemVariants}
-              >
-                <div className="relative h-12 w-12 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-20 group-hover:opacity-30 transition-opacity" />
-                  <span className="text-blue-600 text-lg font-bold">01</span>
-                </div>
-                <span className="text-slate-600">Enterprise-Grade Solutions</span>
-              </motion.li>
-              
-              <motion.li 
-                className="flex items-center space-x-4 group"
-                variants={itemVariants}
-              >
-                <div className="relative h-12 w-12 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-20 group-hover:opacity-30 transition-opacity" />
-                  <span className="text-blue-600 text-lg font-bold">02</span>
-                </div>
-                <span className="text-slate-600">95% On-Time Delivery</span>
-              </motion.li>
-              
-              <motion.li 
-                className="flex items-center space-x-4 group"
-                variants={itemVariants}
-              >
-                <div className="relative h-12 w-12 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-20 group-hover:opacity-30 transition-opacity" />
-                  <span className="text-blue-600 text-lg font-bold">03</span>
-                </div>
-                <span className="text-slate-600">Dedicated Team Approach</span>
-              </motion.li>
-            </motion.ul>
+              Know More
+              <span className="text-lg">→</span>
+            </motion.a>
           </motion.div>
 
-          {/* Stats Grid */}
-          <motion.div 
-            className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-2"
-            variants={itemVariants}
+          {/* Right Stats */}
+          <motion.div
+            className="grid grid-cols-2 gap-6"
+            variants={sectionVariants}
           >
-            {stats.map((stat: StatsType) => (
-              <motion.div 
-                key={stat.id}
-                className="p-6 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200 hover:border-blue-400/40 transition-all duration-300 shadow-sm hover:shadow-md"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                  {stat.value}{stat.suffix}
-                </div>
-                <div className="mt-2 text-slate-600">{stat.label}</div>
-              </motion.div>
+            {stats.map((stat) => (
+              <StatCard key={stat.id} {...stat} />
             ))}
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Animated gradient overlay */}
-      <motion.div 
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="absolute left-1/2 top-0 -ml-[400px] w-[800px] h-[800px] bg-gradient-radial from-blue-200/10 to-transparent rounded-full" />
-      </motion.div>
-
-      {/* Additional top fade gradient */}
-      {/* <div className="absolute inset-x-0 top-0 h-1/6 bg-gradient-to-b from-white via-white/30 to-transparent z-0" /> */}
     </section>
   );
-};
-
-export default AboutUs;
+}

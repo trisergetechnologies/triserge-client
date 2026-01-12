@@ -33,7 +33,21 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="Contact" className="relative py-3 pb-18 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section id="Contact" className="relative py-3 pb-18 overflow-hidden bg-[#050B18]">
+
+      {/* Ambient Glows */}
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 h-[420px] w-[420px] bg-blue-600/30 blur-[130px] rounded-full"
+      />
+
+      <motion.div
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 right-0 h-[520px] w-[520px] bg-purple-600/30 blur-[160px] rounded-full"
+      />
+
       {/* Tech pattern background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -49,10 +63,10 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-white">
             Get In Touch
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-cyan-300 max-w-2xl mx-auto">
             Have a project in mind or want to discuss potential collaboration? Drop us a message!
           </p>
         </motion.div>
@@ -190,7 +204,6 @@ export default function ContactSection() {
                     <div className="ml-4">
                       <h4 className="text-lg font-medium text-gray-800">Email Us</h4>
                       <p className="mt-1 text-gray-600">trisergeofficial@gmail.com</p>
-                      <p className="mt-1 text-gray-600">support@triserge.com</p>
                     </div>
                   </div>
 
@@ -203,6 +216,8 @@ export default function ContactSection() {
                     <div className="ml-4">
                       <h4 className="text-lg font-medium text-gray-800">Call Us</h4>
                       <p className="mt-1 text-gray-600">+91 7827295033</p>
+                      <p className="mt-1 text-gray-600">+91 8800198276</p>
+                      <p className="mt-1 text-gray-600">+91 9354716138</p>
                       <p className="mt-1 text-gray-600">Mon-Sat: 9am-7pm</p>
                     </div>
                   </div>
@@ -216,7 +231,7 @@ export default function ContactSection() {
                     </div>
                     <div className="ml-4">
                       <h4 className="text-lg font-medium text-gray-800">Visit Us</h4>
-                      <p className="mt-1 text-gray-600">866 First Floor, Vaishali Sector 3F</p>
+                      <p className="mt-1 text-gray-600">Vaishali, Sector 3F</p>
                       <p className="mt-1 text-gray-600">Ghaziabad, Uttar Pradesh</p>
                     </div>
                   </div>

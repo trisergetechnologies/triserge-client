@@ -1,112 +1,149 @@
+"use client";
+
 import { motion } from "framer-motion";
+import type { Easing } from "framer-motion";
 
-// Animation variants
-const textVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 1.2,
-      ease: [0.16, 0.77, 0.47, 0.97],
-    }
-  },
-};
+export const EASE_SMOOTH: Easing = [0.16, 0.77, 0.47, 0.97];
 
-const Hero = () => {
+const floatingTags = [
+  { label: "API </> Code", x: "60%", y: "20%", delay: 0 },
+  { label: "Intelligence", x: "75%", y: "48%", delay: 0.3 },
+  { label: "IP: 125.82.138.238", x: "75%", y: "28%", delay: 0.3 },
+  { label: "Code", x: "65%", y: "55%", delay: 0.6 },
+  { label: "Development", x: "80%", y: "65%", delay: 1.0 },
+  { label: "Debugging", x: "49%", y: "30%", delay: 1.0 },
+  { label: "Cloud", x: "52%", y: "75%", delay: 1.3 },
+  { label: "Systems", x: "68%", y: "85%", delay: 1.8 },
+  { label: "Algorithm", x: "55%", y: "55%", delay: 0.5 },
+];
+
+export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 min-h-screen flex items-center overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(147,197,253,0.2)_0%,_rgba(255,255,255,0)_75%)]"></div>
-        <div className="absolute left-1/2 top-0 -ml-[400px] w-[800px] h-[800px] bg-gradient-radial from-blue-300/20 to-transparent rounded-full"></div>
+    <section className="relative flex min-h-[85svh] sm:min-h-[90svh] lg:min-h-screen overflow-hidden bg-[#050B18]">
+      
+      {/* Background Grid */}
+      {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px] md:bg-[size:60px_60px]" /> */}
+
+      {/* Ambient Glows */}
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 h-[420px] w-[420px] bg-blue-600/30 blur-[130px] rounded-full"
+      />
+
+      <motion.div
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 right-0 h-[520px] w-[520px] bg-purple-600/30 blur-[160px] rounded-full"
+      />
+
+      {/* Floating Tech Tags */}
+      <div className="pointer-events-none absolute inset-0 hidden lg:block">
+        {floatingTags.map((tag, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: [0, -16, 0] }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: tag.delay,
+            }}
+            style={{ top: tag.y, left: tag.x }}
+            className="absolute"
+          >
+            <div className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-xl">
+              {tag.label}
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          {/* Text Content */}
-          <motion.div 
-            className="text-center lg:text-left"
+      {/* Content */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-6 lg:px-8">
+        <div className="max-w-2xl pt-8 pb-2 sm:py-12">
+
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={{
               hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.3,
-                  delayChildren: 0.5
-                }
-              }
+              visible: { transition: { staggerChildren: 0.18 } },
             }}
           >
-            <motion.h1 
-              variants={textVariants}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mt-40 mb-6"
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, y: 14 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: EASE_SMOOTH },
+                },
+              }}
+              className="inline-block mb-6 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs sm:text-sm text-cyan-300 backdrop-blur"
             >
-              Transform Your Digital Future
+              Triserge - Surge For Intelligence
+            </motion.span>
+
+            <motion.h1
+              variants={{
+                hidden: { opacity: 0, y: 32 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 1, ease: EASE_SMOOTH },
+                },
+              }}
+              className="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-extrabold leading-[1.15] text-white"
+            >
+              Building{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Intelligent
+              </span>
+              <br />
+              Digital Products
             </motion.h1>
-            
-            <motion.p 
-              variants={textVariants}
-              className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0"
+
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.9, ease: EASE_SMOOTH },
+                },
+              }}
+              className="mt-6 max-w-xl text-base sm:text-lg text-slate-300"
             >
-              Leverage cutting-edge technology solutions to accelerate your business growth and stay ahead in the digital revolution. We are here to simplify technology and amplify the impact you want to build.
+              We build scalable software, APIs, and AI-driven platforms using
+              modern engineering practices to help businesses grow faster and
+              smarter.
             </motion.p>
 
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              variants={textVariants}
-              transition={{ delay: 1.0, duration: 1.5 }}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.9, ease: EASE_SMOOTH },
+                },
+              }}
+              className="mt-10 flex flex-col gap-4 sm:flex-row"
             >
-              <motion.button 
-                whileHover={{ scale: 1.05, transition: { duration: 0.8 } }}
-                whileTap={{ scale: 0.95, transition: { duration: 0.8 } }}
-                transition={{ duration: 1.0 }}
-                className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-shadow"
-              >
-                Book Meeting
-              </motion.button>
-              <motion.button 
-                whileHover={{ borderColor: "#0284c7", color: "#0284c7", transition: { duration: 0.3 } }}
-                transition={{ duration: 1.0 }}
-                className="border border-slate-300 text-slate-600 px-8 py-4 rounded-lg font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors"
-              >
-                Learn More
-              </motion.button>
-            </motion.div>
+              <button className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg hover:scale-[1.04] transition">
+                Get Started
+              </button>
 
-            {/* Tech Stack Logos */}
-            <motion.div 
-              className="mt-12 flex justify-center lg:justify-start space-x-8 opacity-75"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 0.75, y: 0 }}
-              transition={{ delay: 0.9, duration: 1, ease: "easeOut" }}
-            >
-              <svg className="h-8 w-8 text-slate-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 0l-9 5v10l9 5 9-5V5l-9-5zM2 6.5l7 3.87v7.74L2 14.25V6.5zm9 11.63l-7-3.87v-7.6L11 6.5v11.63zm1-11.63L22 6.5v7.75l-7 3.87V6.5z"/>
-              </svg>
+              <button className="rounded-xl border border-white/20 px-8 py-4 font-medium text-white hover:bg-white/5 transition">
+                View Services
+              </button>
             </motion.div>
           </motion.div>
 
-          {/* Graphic/Image Section */}
-          <div className="relative hidden lg:block">
-            <div className="relative bg-gradient-to-br from-blue-100/50 to-cyan-100/50 p-1 rounded-xl backdrop-blur-xl border border-slate-200">
-              <div className="bg-white rounded-lg overflow-hidden shadow-xl">
-                <div className="h-96 bg-gradient-to-br from-blue-50/50 to-cyan-100/50 animate-pulse"></div>
-              </div>
-              
-              {/* Glowing effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 to-cyan-300/30 blur-2xl -z-10"></div>
-            </div>
-          </div>
         </div>
       </div>
-
-      {/* Grid pattern */}
-      <div className="absolute inset-0 z-0 opacity-15 pattern-grid-lg text-slate-300/30" />
-      <div className="absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-white via-white/0 to-transparent z-0" />
     </section>
   );
-};
-
-export default Hero;
+}
