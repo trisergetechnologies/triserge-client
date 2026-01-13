@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const faqs = [
   {
@@ -93,7 +93,7 @@ export default function FAQSection() {
           transition={{ staggerChildren: 0.1 }}
         >
           {faqs.map((faq, index) => (
-            <motion.div key={index} variants={faqVariants}>
+            <motion.div key={index} variants={faqVariants as any}>
               <button
                 onClick={() => toggleFAQ(index)}
                 className={`w-full flex justify-between items-center p-6 text-left rounded-xl transition-all duration-300 ${
