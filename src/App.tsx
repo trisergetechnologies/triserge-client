@@ -1,40 +1,30 @@
-import { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import './App.css';
-import AboutUs from './pages/AboutUs';
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layouts/Layout";
+import About from "./headerpage/About";
+import Services from "./headerpage/Services";
+import Careers from "./headerpage/Careers";
+import SellProject from "./headerpage/Sellproject";
+import Contact from "./headerpage/Contact";
 import Home from "./pages/Home";
-import NotFound from './pages/Not-Found';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsOfUse from '../src/components/TermsOfUse'
-import AppointmentPolicy from '../src/components/AppointmentPolicy'
-import Career from '../src/pages/Career'
+import Team from "./headerpage/Team";
+import { Toaster } from "react-hot-toast";
 
-// Scroll to top component
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
-
-function App() {
+export default function App() {
   return (
     <>
-      <ScrollToTop />
+      <Toaster position="top-center" />
+
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about-us' element={<AboutUs />} />
-        <Route path='*' element={<NotFound />} />
-        <Route path='privacy-policy' element={<PrivacyPolicy />} />
-        <Route path='terms-of-use' element={<TermsOfUse />} />
-        <Route path='appointment-policy' element={<AppointmentPolicy />} />
-        <Route path='/careers' element={<Career />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/sellproject" element={<SellProject />} />
+          <Route path="/team" element={<Team />} />
+        </Route>
       </Routes>
     </>
   );
 }
-
-export default App;

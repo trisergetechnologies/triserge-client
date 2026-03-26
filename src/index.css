@@ -1,8 +1,19 @@
-html { overflow-x: hidden; }
-.scrollbar-hide {
- -ms-overflow-style: none;
-   scrollbar-width: none;
- }
- .scrollbar-hide::-webkit-scrollbar {
-   display: none;
- }
+@import "tailwindcss";
+
+.react-tel-input .country-list {
+  background-color: #111 !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.react-tel-input .country {
+  padding: 10px !important;
+}
+
+.react-tel-input .country:hover {
+  background-color: #0d9488 !important; /* teal */
+  color: black !important;
+}

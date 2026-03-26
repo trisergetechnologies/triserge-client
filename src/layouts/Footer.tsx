@@ -1,138 +1,152 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import { Mail, Phone, MapPin } from "lucide-react";
 
-interface FooterLink {
-  name: string;
-  href: string;
-}
+const socialLinks = [
+  { icon: FaTwitter, url: "https://twitter.com/yourusername" },
+  { icon: FaLinkedin, url: "https://www.linkedin.com/jobs/view/..." },
+  { icon: FaGithub, url: "https://github.com/trisergetechnologies" },
+  { icon: FaInstagram, url: "https://www.instagram.com/triserge_technologies/" },
+];
 
-interface FooterColumn {
-  title: string;
-  links: FooterLink[];
-}
-
-const Footer = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const footerContent: FooterColumn[] = [
-    {
-      title: 'Company',
-      links: [
-        { name: 'About Us', href: '/about-us' },
-        { name: 'Careers', href: '/careers' },
-        { name: 'Contact', href: '/#contact' },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { name: 'Privacy Policy', href: '/privacy-policy' },
-        { name: 'Terms of Service', href: '/terms-of-use' },
-        { name: 'Appointment Policy', href: '/appointment-policy' },
-      ],
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
+export default function Footer() {
   return (
-    <motion.footer
-      initial="hidden"
-      animate={isVisible ? 'visible' : 'hidden'}
-      variants={containerVariants}
-      transition={{ duration: 0.8 }}
-      className="bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 border-t border-gray-700/50 shadow-2xl shadow-black/30 text-gray-300"
-    >
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-        <div className="flex flex-col lg:flex-row flex-wrap gap-12 justify-between py-12">
-          {/* Company Info */}
-          <div className="flex-1 min-w-[250px]">
-            <h3 className="text-2xl font-bold text-cyan-400">Triserge</h3>
-            <p className="text-sm mt-3 leading-6 text-gray-400 max-w-xs">
-              Empowering the future of technology through innovation and collaboration.
+    <footer className="bg-[#0a0a0a] text-gray-400 border-t border-gray-900">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 lg:py-24">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
+
+          {/* BRAND */}
+          <div className="space-y-6 flex flex-col items-center sm:items-start text-center sm:text-left">
+            <h2 className="text-white text-2xl font-black tracking-tighter">
+              TRISERGE<span className="text-pink-600">.</span>
+            </h2>
+            <p className="text-sm leading-8 text-gray-500 max-w-xs">
+              Building premium digital products, scalable systems, and modern
+              experiences for forward-thinking brands.
             </p>
-            <div className="mt-4 flex space-x-4">
-              {/* GitHub */}
-              <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" /></svg>
-              </a>
-              {/* Twitter */}
-              <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path  /></svg>
-              </a>
-              {/* LinkedIn */}
-              <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" /></svg>
-              </a>
+
+            <div className="flex gap-4">
+              {socialLinks.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={i}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-800 hover:border-pink-600 hover:text-pink-600 transition-all duration-300"
+                  >
+                    <Icon size={18} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* Footer Columns */}
-          <div className="flex flex-1 flex-wrap gap-10 min-w-[250px]">
-            {footerContent.map((column, index) => (
-              <div key={index} className="min-w-[120px]">
-                <h4 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-4">
-                  {column.title}
-                </h4>
-                <ul className="space-y-2">
-                  {column.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <a
-                        href={link.href}
-                        className="text-gray-300 hover:text-cyan-300 text-sm transition-all duration-300 hover:pl-2 hover:border-l-4 hover:border-cyan-500/50"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* COMPANY */}
+          <div className="text-center sm:text-left">
+            <h3 className="text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8">
+              Company
+            </h3>
+            <ul className="space-y-4 text-[13px]">
+              {["About", "Services", "Careers", "Contact"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`/${item.toLowerCase()}`}
+                    className="hover:text-pink-600 hover:pl-1 transition-all duration-300"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="flex-1 min-w-[280px]">
-            <div className="w-full max-w-md text-center sm:text-left">
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-cyan-400">
-                Newsletter
-              </h4>
-              <p className="text-sm text-gray-400 mt-2">
-                Subscribe to our newsletter for the latest updates.
-              </p>
-              <form className="mt-4 space-y-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full rounded-lg bg-gray-800/40 backdrop-blur-sm px-4 py-2 text-gray-100 border border-gray-600/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-lg font-medium bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 text-gray-100 hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-cyan-500/20"
+          {/* SERVICES */}
+          <div className="text-center sm:text-left">
+            <h3 className="text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8">
+              Capabilities
+            </h3>
+            <ul className="space-y-4 text-[13px]">
+              {[
+                "Web Development",
+                "UI/UX Design",
+                "Mobile Apps",
+                "SEO & Marketing",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="cursor-default hover:text-white transition-colors"
                 >
-                  Subscribe
-                </button>
-              </form>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* CONTACT + NEWSLETTER */}
+          <div className="text-center sm:text-left">
+            <h3 className="text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8">
+              Contact
+            </h3>
+
+      <div className="space-y-4 text-sm text-white/80 mb-6">
+  <div className="flex items-center justify-center sm:justify-start gap-3">
+    <MapPin size={16} className="text-pink-500" />
+    
+    <a
+      href="https://www.google.com/maps?q=Plot+No.+158+Gyan+Khand+II+Indirapuram+Ghaziabad+Uttar+Pradesh+India"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-pink-400 transition"
+    >
+      Plot No. 158, Gyan Khand II, Indirapuram, Ghaziabad, Uttar Pradesh, India
+    </a>
+
+  </div>
+
+  <div className="flex items-center justify-center sm:justify-start gap-3">
+    <Phone size={16} className="text-pink-500" />
+    <a href="tel:+918800198276" className="hover:text-pink-400">
+      +91 8800198276
+    </a>
+  </div>
+
+  <div className="flex items-center justify-center sm:justify-start gap-3">
+    <Mail size={16} className="text-pink-500" />
+    <a href="mailto:info@triserge.com" className="hover:text-pink-400">
+      trisergeofficial@gmail.com
+    </a>
+  </div>
+</div>
+
+            {/* Newsletter */}
+            <p className="text-xs text-gray-600 mb-4">
+              Subscribe for updates
+            </p>
+
+            <div className="relative group max-w-sm mx-auto sm:mx-0">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full px-4 py-3 bg-transparent border-b border-gray-800 text-sm outline-none focus:border-pink-600 transition-all placeholder:text-gray-600"
+              />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 text-xs font-black uppercase tracking-widest text-white hover:text-pink-600 transition-colors active:scale-95">
+                Join
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-gray-700 py-6">
-          <p className="text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Triserge. All rights reserved.
-          </p>
+        {/* BOTTOM */}
+        <div className="border-t border-gray-900 mt-16 md:mt-20 pt-10">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <p className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-medium text-gray-500">
+              © {new Date().getFullYear()} TRISERGE. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
-};
-
-export default Footer;
+}

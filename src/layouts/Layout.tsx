@@ -1,25 +1,14 @@
+// Layout.tsx
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 
-interface LayoutProps {
-  children: React.ReactNode;
-  scrollToServices?: () => void;
-  scrollToContact?: () => void;
-}
-
-const Layout = ({ children, scrollToServices, scrollToContact }: LayoutProps) => {
+export default function Layout() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar 
-        scrollToServices={scrollToServices}
-        scrollToContact={scrollToContact}
-      />
-      <main className="flex-grow">
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer/>
+    </>
   );
-};
-
-export default Layout;
+}
