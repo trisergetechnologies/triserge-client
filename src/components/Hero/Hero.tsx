@@ -1,6 +1,60 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Hero() {
+  useEffect(() => {
+    const sendDebug = (
+      hypothesisId: string,
+      message: string,
+      data: Record<string, unknown>
+    ) => {
+      // #region agent log
+      fetch("http://127.0.0.1:7651/ingest/6ea6f721-ca9f-4e1f-92a3-eba833bb2b17", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Debug-Session-Id": "011536",
+        },
+        body: JSON.stringify({
+          sessionId: "011536",
+          runId: "pre-fix",
+          hypothesisId,
+          location: "src/components/Hero/Hero.tsx:7",
+          message,
+          data,
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
+    };
+
+    const section = document.querySelector("section");
+    sendDebug("H3", "hero-mount-width-snapshot", {
+      innerWidth: window.innerWidth,
+      htmlClientWidth: document.documentElement.clientWidth,
+      htmlScrollWidth: document.documentElement.scrollWidth,
+      bodyClientWidth: document.body.clientWidth,
+      bodyScrollWidth: document.body.scrollWidth,
+      sectionClientWidth: (section as HTMLElement | null)?.clientWidth ?? null,
+      sectionScrollWidth: (section as HTMLElement | null)?.scrollWidth ?? null,
+    });
+
+    requestAnimationFrame(() => {
+      const sectionRaf = document.querySelector("section");
+      sendDebug("H4", "hero-first-raf-width-snapshot", {
+        innerWidth: window.innerWidth,
+        htmlClientWidth: document.documentElement.clientWidth,
+        htmlScrollWidth: document.documentElement.scrollWidth,
+        bodyClientWidth: document.body.clientWidth,
+        bodyScrollWidth: document.body.scrollWidth,
+        sectionClientWidth:
+          (sectionRaf as HTMLElement | null)?.clientWidth ?? null,
+        sectionScrollWidth:
+          (sectionRaf as HTMLElement | null)?.scrollWidth ?? null,
+      });
+    });
+  }, []);
+
   return (
     <section className="relative w-full min-h-[100dvh] bg-[#050505] text-white flex items-center overflow-hidden font-sans selection:bg-indigo-500/30">
       

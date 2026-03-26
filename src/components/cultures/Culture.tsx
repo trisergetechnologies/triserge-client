@@ -68,7 +68,7 @@ export default function Culture() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#0f0f0f] text-white px-6 py-28 font-[Inter]">
+    <section className="bg-[#0f0f0f] text-white px-6 py-28 overflow-x-hidden font-[Inter]">
       <div className="max-w-6xl mx-auto">
 
         {/* Heading */}

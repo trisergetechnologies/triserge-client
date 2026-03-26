@@ -96,13 +96,121 @@ export default function Navbar() {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
+  useEffect(() => {
+    const sendDebug = (
+      hypothesisId: string,
+      message: string,
+      data: Record<string, unknown>
+    ) => {
+      // #region agent log
+      fetch("http://127.0.0.1:7651/ingest/6ea6f721-ca9f-4e1f-92a3-eba833bb2b17", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Debug-Session-Id": "011536",
+        },
+        body: JSON.stringify({
+          sessionId: "011536",
+          runId: "pre-fix",
+          hypothesisId,
+          location: "src/layouts/Navbar.tsx:104",
+          message,
+          data,
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
+    };
+
+    const headerEl = document.querySelector("header");
+    const rootEl = document.getElementById("root");
+    const navShellEl = document.querySelector("nav > div");
+    const vv = window.visualViewport;
+    const overflowSuspects = Array.from(
+      document.querySelectorAll<HTMLElement>("body *")
+    )
+      .filter((el) => el.scrollWidth - el.clientWidth > 2)
+      .slice(0, 5)
+      .map((el) => ({
+        tag: el.tagName,
+        className: el.className?.toString().slice(0, 120) ?? "",
+        clientWidth: el.clientWidth,
+        scrollWidth: el.scrollWidth,
+      }));
+
+    sendDebug("H1", "navbar-mount-layout-snapshot", {
+      innerWidth: window.innerWidth,
+      outerWidth: window.outerWidth,
+      visualViewportWidth: vv?.width ?? null,
+      devicePixelRatio: window.devicePixelRatio,
+      clientWidth: document.documentElement.clientWidth,
+      bodyClientWidth: document.body.clientWidth,
+      bodyScrollWidth: document.body.scrollWidth,
+      bodyMargin: window.getComputedStyle(document.body).margin,
+      rootClientWidth: rootEl?.clientWidth ?? null,
+      rootScrollWidth: rootEl?.scrollWidth ?? null,
+      headerClientWidth: (headerEl as HTMLElement | null)?.clientWidth ?? null,
+      headerRectWidth:
+        (headerEl as HTMLElement | null)?.getBoundingClientRect().width ?? null,
+      headerComputedWidth:
+        headerEl ? window.getComputedStyle(headerEl).width : null,
+      navShellBg:
+        navShellEl ? window.getComputedStyle(navShellEl).backgroundColor : null,
+      navShellBorder:
+        navShellEl ? window.getComputedStyle(navShellEl).borderColor : null,
+      overflowSuspects,
+      pathname,
+      scrolled,
+      isOpen,
+    });
+
+    requestAnimationFrame(() => {
+      sendDebug("H2", "navbar-first-raf-layout-snapshot", {
+        innerWidth: window.innerWidth,
+        outerWidth: window.outerWidth,
+        visualViewportWidth: window.visualViewport?.width ?? null,
+        devicePixelRatio: window.devicePixelRatio,
+        clientWidth: document.documentElement.clientWidth,
+        bodyClientWidth: document.body.clientWidth,
+        bodyScrollWidth: document.body.scrollWidth,
+        bodyMargin: window.getComputedStyle(document.body).margin,
+        rootClientWidth: rootEl?.clientWidth ?? null,
+        rootScrollWidth: rootEl?.scrollWidth ?? null,
+        headerClientWidth:
+          (document.querySelector("header") as HTMLElement | null)?.clientWidth ??
+          null,
+        headerRectWidth:
+          (document.querySelector("header") as HTMLElement | null)?.getBoundingClientRect()
+            .width ?? null,
+        headerComputedWidth: document.querySelector("header")
+          ? window.getComputedStyle(document.querySelector("header") as Element).width
+          : null,
+        navShellBg: document.querySelector("nav > div")
+          ? window.getComputedStyle(document.querySelector("nav > div") as Element)
+              .backgroundColor
+          : null,
+        overflowSuspects: Array.from(document.querySelectorAll<HTMLElement>("body *"))
+          .filter((el) => el.scrollWidth - el.clientWidth > 2)
+          .slice(0, 5)
+          .map((el) => ({
+            tag: el.tagName,
+            className: el.className?.toString().slice(0, 120) ?? "",
+            clientWidth: el.clientWidth,
+            scrollWidth: el.scrollWidth,
+          })),
+      });
+    });
+  }, [pathname, scrolled, isOpen]);
+
   return (
-    <header className="fixed top-0 w-full z-[100]">
+    <header className="sticky top-0 w-full z-[100]">
       {/* ================= TOP BAR ================= */}
 
       <div
-        className={`bg-black/95 text-white transition-all duration-500 overflow-hidden ${
-          scrolled ? "h-0" : "h-10 border-b border-white/10"
+        className={`bg-black/95 text-white overflow-hidden hidden md:block transition-[opacity,transform] duration-500 ease-out ${
+          scrolled
+            ? "opacity-0 -translate-y-2 pointer-events-none"
+            : "opacity-100 translate-y-0 border-b border-white/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 h-full flex justify-between items-center text-[10px] uppercase tracking-[0.2em]">
@@ -147,10 +255,10 @@ export default function Navbar() {
 
       <nav className="px-3 sm:px-4 md:px-6 py-3 md:py-4">
         <div
-          className={`max-w-7xl mx-auto transition-all duration-500 px-4 sm:px-6 rounded-2xl border ${
+          className={`max-w-7xl mx-auto transition-[background-color,border-color,box-shadow,backdrop-filter] duration-200 md:duration-500 ease-out px-4 sm:px-6 rounded-2xl border ${
             scrolled
-              ? "bg-black/60 backdrop-blur-xl border-white/10 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
-              : "bg-transparent border-transparent py-4 md:py-5"
+              ? "bg-black/75 md:bg-black/60 backdrop-blur-xl border-white/10 py-4 md:py-3 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+              : "bg-black/75 md:bg-transparent border-white/10 md:border-transparent py-4 md:py-5"
           }`}
         >
           <div className="flex items-center justify-between">
@@ -237,9 +345,10 @@ export default function Navbar() {
           <motion.div
             ref={menuRef}
             className="fixed inset-0 bg-black z-[110] flex flex-col px-6 py-10 sm:px-10"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
           >
             {/* HEADER */}
             <div className="flex justify-between items-center mb-16">
@@ -254,9 +363,9 @@ export default function Navbar() {
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.04, duration: 0.16, ease: "easeOut" }}
                 >
                   <Link
                     to={link.href}
