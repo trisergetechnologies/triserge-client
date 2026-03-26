@@ -90,31 +90,30 @@ export default function Footer() {
               Contact
             </h3>
 
-      <div className="space-y-4 text-sm text-white/80 mb-6">
+   <div className="space-y-4 text-sm text-white/80 mb-6">
   <div className="flex items-center justify-center sm:justify-start gap-3">
-    <MapPin size={16} className="text-pink-500" />
-    
+    <MapPin size={16} className="text-teal-400" />
+
     <a
       href="https://www.google.com/maps?q=Plot+No.+158+Gyan+Khand+II+Indirapuram+Ghaziabad+Uttar+Pradesh+India"
       target="_blank"
       rel="noopener noreferrer"
-      className="hover:text-pink-400 transition"
+      className="hover:text-teal-300 transition"
     >
       Plot No. 158, Gyan Khand II, Indirapuram, Ghaziabad, Uttar Pradesh, India
     </a>
-
   </div>
 
   <div className="flex items-center justify-center sm:justify-start gap-3">
-    <Phone size={16} className="text-pink-500" />
-    <a href="tel:+918800198276" className="hover:text-pink-400">
+    <Phone size={16} className="text-teal-400" />
+    <a href="tel:+918800198276" className="hover:text-teal-300">
       +91 8800198276
     </a>
   </div>
 
   <div className="flex items-center justify-center sm:justify-start gap-3">
-    <Mail size={16} className="text-pink-500" />
-    <a href="mailto:info@triserge.com" className="hover:text-pink-400">
+    <Mail size={16} className="text-teal-400" />
+    <a href="mailto: trisergeofficial@gmail.com" className="hover:text-teal-300">
       trisergeofficial@gmail.com
     </a>
   </div>

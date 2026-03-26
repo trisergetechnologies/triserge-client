@@ -10,7 +10,7 @@ const skills = [
 ];
 
 const techStack = [
-  "React",
+  "React.js",
   "Next.js",
   "Node.js",
   "Express",
@@ -19,6 +19,8 @@ const techStack = [
   "MySQL",
   "AWS",
   "GCP",
+  "Redis",
+  "Kafka"
 ];
 
 export default function Experience() {

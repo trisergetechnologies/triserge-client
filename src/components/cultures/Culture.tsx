@@ -5,13 +5,13 @@ const cultureData = [
   {
     title: "Innovation First",
     desc: "At Triserge, we constantly explore new technologies to build modern, scalable web and app solutions that keep businesses ahead in the digital era. From AI-driven automation to cutting-edge frameworks, we embrace what's next.",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774548684/innovative_druxi6.jpg",
     additionalContent: "We dedicate 20% of our resources to R&D, ensuring we're always at the forefront of technological advancements. Our innovation lab experiments with emerging tech like Web3, IoT, and machine learning to deliver future-ready solutions."
   },
   {
     title: "Empowering Offline Businesses",
     desc: "Our core mission is to help traditional and offline businesses go digital with affordable, high-quality solutions that unlock growth and new opportunities. We bridge the gap between physical operations and digital transformation.",
-    img: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774548797/business_hduu5x.jpg",
     additionalContent: "We've successfully digitized over 200+ local businesses, helping them increase revenue by an average of 150% through custom e-commerce platforms, digital payment integration, and automated inventory management systems."
   },
   {
@@ -23,7 +23,7 @@ const cultureData = [
   {
     title: "Ownership Mindset",
     desc: "We take full responsibility for our work, act like owners, and stay committed to delivering results with accountability and precision. No task is too small, and no challenge is too big when we approach it with ownership.",
-    img: "https://images.unsplash.com/photo-1552664730-d307ca884978",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774550717/owns_vikhfl.jpg",
     additionalContent: "Every team member has direct visibility into project outcomes and client satisfaction metrics. We encourage proactive problem-solving and celebrate team members who go above and beyond to ensure project success, regardless of their formal role."
   },
   {
@@ -50,16 +50,11 @@ const cultureData = [
     img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
     additionalContent: "Our two-week sprint cycles ensure rapid iteration and continuous improvement. We welcome changing requirements and view them as opportunities to deliver more value, not obstacles to overcome."
   },
-  {
-    title: "Community Impact",
-    desc: "Beyond business, we're committed to making a positive impact in the communities we serve. We believe technology should be a force for good and accessible to all.",
-    img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c",
-    additionalContent: "We run free digital literacy workshops for small business owners, offer discounted rates for non-profits, and mentor aspiring tech professionals from underprivileged backgrounds. Our goal is to democratize access to digital transformation."
-  },
+ 
   {
     title: "Quality Craftsmanship",
     desc: "We take pride in writing clean, maintainable code and designing intuitive experiences. Every pixel, every line of code, and every user interaction is crafted with care and attention to detail.",
-    img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774549119/craftsman_gvxjgz.jpg",
     additionalContent: "Our quality assurance process includes peer code reviews, automated testing, user experience testing, and performance optimization. We don't consider a project complete until it meets our exacting standards of excellence."
   }
 ];
@@ -79,9 +74,9 @@ export default function Culture() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Our <span className="text-indigo-500">Culture</span>
-          </h1>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+  Our <span className="text-teal-400">Culture</span>
+</h1>
 
           <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             The values and mindset that define how we build, collaborate, and grow.

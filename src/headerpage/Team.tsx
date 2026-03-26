@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const teamData = [
   {
     name: "Vaibhav Pandey",
-    role: "DevOps Engineer & Software Engineer",
+    role: "DevOps & Software Engineer",
     img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774517759/pandeyphoto_jhvdna.jpg",
   },
   {
@@ -25,47 +25,63 @@ const teamData = [
 
 export default function Team() {
   return (
-    <section className="bg-[#494949] text-white py-40  px-6">
+    <section className="bg-neutral-950 text-white py-32 md:py-48 px-6">
       <div className="max-w-7xl mx-auto">
+        
+        {/* HEADING SECTION */}
+        <div className="text-center mb-24 max-w-2xl mx-auto">
+          <span className="text-teal-400 font-bold text-xs uppercase tracking-[0.2em]">
+            Our Backbone
+          </span>
 
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">
-            Meet Our <span className="text-teal-400">Core Team</span>
+          <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mt-3 mb-6">
+            Meet Our <span className="text-teal-400">Core Team</span>.
           </h2>
-          <p className="text-gray-300 mt-3">
-            Skilled professionals building modern digital solutions
+
+          <div className="w-16 h-1 bg-teal-400 mx-auto mb-8 rounded-full" />
+
+          <p className="text-neutral-400 text-lg leading-relaxed">
+            A diverse group of skilled professionals dedicated to building
+            modern digital solutions and driving innovation.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* TEAM GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
           {teamData.map((member, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="group relative rounded-2xl overflow-hidden bg-[#1a1a1a] border border-gray-700 hover:border-teal-400 transition-all shadow-lg hover:shadow-teal-500/20"
+              className="group flex flex-col items-center text-center space-y-6"
             >
-              
-              {/* Image */}
- <div className="relative h-72 flex items-center justify-center bg-[#1a1a1a]">
-  <img
-    src={member.img}
-    alt={member.name}
-    className="h-full w-full object-contain group-hover:scale-105 transition duration-500"
-  />
+              {/* IMAGE */}
+              <div className="relative flex items-center justify-center">
+                
+                <div className="absolute inset-0 rounded-full bg-teal-500/0 group-hover:bg-teal-500/10 blur-xl transition-all duration-500" />
 
-  {/* Soft gradient (lighter now) */}
-  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/80 to-transparent"></div>
-</div>
+                <div className="relative w-48 h-48 sm:w-52 sm:h-52 rounded-full overflow-hidden border-[6px] border-neutral-900 group-hover:border-teal-500 transition-all duration-500 ease-out shadow-2xl">
+                  
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                  />
 
-              {/* Info */}
-              <div className="absolute bottom-0 w-full p-5 text-center">
-                <h3 className="text-lg font-semibold">{member.name}</h3>
-                <p className="text-sm text-gray-300">{member.role}</p>
+                </div>
+              </div>
+
+              {/* INFO */}
+              <div className="space-y-1">
+                <h3 className="text-xl font-bold text-white tracking-tight">
+                  {member.name}
+                </h3>
+
+                <p className="text-[13px] font-medium uppercase tracking-widest text-neutral-500">
+                  {member.role}
+                </p>
               </div>
 
             </motion.div>

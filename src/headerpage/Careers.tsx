@@ -148,13 +148,14 @@ export default function Careers() {
               whileInView={{ opacity: 1, x: 0 }}
               className="p-6 border border-white/10 rounded-xl flex justify-between"
             >
-              <div>
-                <h3 className="text-lg font-bold">{job.role}</h3>
-                <p className="text-sm text-gray-400 flex gap-3">
-                  <span><MapPin size={14} /> {job.location}</span>
-                  <span>{job.type}</span>
-                </p>
-              </div>
+              <p className="text-sm text-gray-400 flex items-center gap-3">
+         <span className="text-teal-400">{job.type}</span>
+
+        <span className="flex items-center gap-2">
+         <MapPin size={14} />
+        {job.location}
+      </span>
+       </p>
 
               <button
                 onClick={() => scrollToApply(job.role)}

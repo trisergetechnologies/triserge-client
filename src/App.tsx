@@ -3,7 +3,7 @@ import Layout from "./layouts/Layout";
 import About from "./headerpage/About";
 import Services from "./headerpage/Services";
 import Careers from "./headerpage/Careers";
-import SellProject from "./headerpage/Sellproject";
+import SellProject from "./headerpage/SellProject";
 import Contact from "./headerpage/Contact";
 import Home from "./pages/Home";
 import Team from "./headerpage/Team";

@@ -90,10 +90,8 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.5 }}
             className="mt-6 md:mt-8 text-gray-400 max-w-md md:max-w-lg text-base md:text-xl leading-relaxed font-light"
           >
-            We strip away the noise to build high-performance interfaces 
-            that redefine how users interact with your brand.
-            We strip away the noise to build high-performance interfaces 
-            that redefine how users interact with your brand.
+           At Triserge Technologies, we transform ideas into powerful digital products.
+           We strip away complexity to design high-performance eCommerce platforms, web applications, and mobile apps that deliver seamless user experiences and measurable business growth.
           </motion.p>
 
           {/* Mobile CTA (Optional but recommended for UX) */}

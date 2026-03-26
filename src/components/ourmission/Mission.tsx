@@ -26,7 +26,7 @@ const missionData = [
   {
     title: "Focus on User Experience",
     desc: "We design with users at the center of everything. By combining intuitive interfaces with seamless performance, we create digital products that are not only functional but genuinely enjoyable to use.",
-    img: "https://images.unsplash.com/photo-1559028012-481c04fa702d",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774550481/userinterface_o3lutj.jpg",
   },
 ];
 
@@ -43,9 +43,9 @@ export default function Mission() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-            Our <span className="text-purple-500">Mission</span>
-          </h1>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+       Our <span className="text-teal-400">Mission</span>
+       </h1>
 
           <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             What drives us every day to build, innovate, and create meaningful impact.
