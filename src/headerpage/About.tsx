@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-[#616161] text-white px-6 py-40 selection:bg-teal-500/30">
+    <section className="min-h-screen bg-neutral-950  text-white px-6 py-50 selection:bg-teal-500/30">
       <div className="max-w-6xl mx-auto">
 
         {/* Header Section */}

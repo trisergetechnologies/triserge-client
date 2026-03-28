@@ -1,6 +1,7 @@
 import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const socialLinks = [
   { icon: FaTwitter, url: "https://twitter.com/yourusername" },
@@ -42,9 +43,17 @@ export default function Footer() {
 
           {/* BRAND */}
           <div className="space-y-6 flex flex-col items-center sm:items-start text-center sm:text-left">
-            <h2 className="text-white text-2xl font-black tracking-tighter">
-              TRISERGE<span className="text-pink-600">.</span>
-            </h2>
+            <Link
+  to="/"
+  className="flex items-center gap-3 group"
+>
+  <img
+    src="/images/logo/Triserge_Logo.png"
+    alt="Triserge Logo"
+    className="h-28 md:h-30 w-auto object-contain 
+    transition-transform duration-500 group-hover:scale-105"
+  />
+</Link>
 
             <p className="text-sm leading-8 text-gray-500 max-w-xs">
               Building premium digital products, scalable systems, and modern

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pt-12 md:pt-16 bg-[#050505] text-white flex items-center overflow-hidden font-sans selection:bg-indigo-500/30">
+    <section className="relative w-full min-h-screen pt-12 md:pt-30 bg-[#050505] text-white flex items-center overflow-hidden font-sans selection:bg-indigo-500/30">
 
       {/* Background */}
       <div className="absolute inset-0 z-0">

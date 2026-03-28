@@ -77,7 +77,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative min-h-screen bg-[#494949] text-white px-4 sm:px-6 py-50 flex items-center overflow-hidden">
+    <section className="relative min-h-screen bg-neutral-950 text-white px-4 sm:px-6 py-50 flex items-center overflow-hidden">
       
       {/* Glow Effects */}
       <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[100px]" />

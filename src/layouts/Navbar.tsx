@@ -1,7 +1,8 @@
-// src/components/Navbar.tsx
+
 
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+
 import {
   Menu,
   X,
@@ -12,6 +13,7 @@ import {
   Linkedin,
   ArrowUpRight,
 } from "lucide-react";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ================= CONFIG ================= */
@@ -169,23 +171,20 @@ export default function Navbar() {
               : "bg-transparent border-transparent"
           }`}
         >
-          <div className="flex items-center justify-between py-2">
+   <div className="flex items-center justify-between py-0">
             {/* LOGO */}
 
-            <Link
-              to="/"
-              className="flex items-center gap-2 group"
-            >
-              <div className="w-8 h-8 bg-gradient-to-tr from-teal-400 to-cyan-400 rotate-45 rounded-lg flex items-center justify-center transition-all duration-500 group-hover:rotate-90 shadow-lg shadow-teal-500/30">
-                <span className="-rotate-45 group-hover:-rotate-90 font-black text-black text-sm">
-                  T
-                </span>
-              </div>
-
-              <span className="text-white font-bold tracking-[0.3em] text-sm uppercase">
-                Triserge
-              </span>
-            </Link>
+           <Link
+     to="/"
+      className="flex items-center gap-3 group"
+>
+<img
+  src="/images/logo/Triserge_Logo.png"
+  alt="Triserge Logo"
+  className="h-26 md:h-26 w-auto max-w-[150px] object-contain
+  transition-transform duration-500 group-hover:scale-105"
+/>
+</Link>
 
             {/* DESKTOP NAV */}
 
