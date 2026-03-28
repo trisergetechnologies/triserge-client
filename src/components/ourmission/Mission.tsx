@@ -4,22 +4,22 @@ const missionData = [
   {
     title: "Deliver Excellence",
     desc: "We aim to deliver high-quality, reliable, and scalable digital solutions that create real business impact. Every project we build is focused on performance, usability, and long-term value, ensuring measurable growth.",
-    img: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774681599/Deliver_Excellence_k0y0ri.jpg",
   },
   {
     title: "Empower Businesses",
     desc: "We empower startups and enterprises with modern, affordable technology solutions. Our goal is to bridge the gap between offline and digital, helping businesses scale efficiently.",
-    img: "https://images.unsplash.com/photo-1551434678-e076c223a692",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774553468/Empower_Businesses_eakfos.jpg",
   },
   {
     title: "Drive Innovation",
     desc: "We embrace innovation and adaptability by exploring new technologies and ideas, ensuring our clients stay competitive and future-ready in a rapidly evolving digital world.",
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774553577/Drive_Innovation_tknu0z.jpg",
   },
    {
     title: "Build Trust & Transparency",
     desc: "We believe in honest communication, clear processes, and long-term partnerships. Our clients are always informed, involved, and confident in every step of their digital journey with us.",
-    img: "https://images.unsplash.com/photo-1521791136064-7986c2920216",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774638710/Build_Trust_Transparency_boovfc.jpg",
   },
 
 

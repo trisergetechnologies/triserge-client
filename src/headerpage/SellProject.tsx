@@ -1,5 +1,3 @@
-// src/pages/SellProject.tsx
-
 import { useState } from "react";
 import { Mail, Phone, Send } from "lucide-react";
 import toast from "react-hot-toast";
@@ -19,42 +17,63 @@ export default function SellProject() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e: any) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    
+    setSuccess(false);
+    
 
-  try {
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/sell`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      }
-    );
-
-    const data = await res.json();
-
-    if (data.success) {
-      setSuccess(true);
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        project: "",
-      });
-    } else {
-      alert(data.message);
+    if (!form.project.trim()) {
+      toast.error("Project description cannot be empty");
+      return;
     }
 
-  } catch (error) {
-    toast.error("Server error. Try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+    if (form.project.length > 100) {
+      toast.error("Project must be under 100 characters");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/sell`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSuccess(true);
+
+       
+        toast.success("Project submitted successfully");
+
+        setForm({
+          name: "",
+          email: "",
+          phone: "",
+          project: "",
+        });
+
+      } else {
+        // ❌ Error Toast
+        toast.error(data.message || "Something went wrong ");
+      }
+
+    } catch (error) {
+      // ❌ Server Error Toast
+      toast.error("Server error. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="min-h-screen bg-black text-white px-6 py-50 flex items-center justify-center">
@@ -67,12 +86,14 @@ export default function SellProject() {
           </h1>
 
           <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-            Turn your ideas into earnings. Submit your client & project information and let our team
-            connect you & handle the deal. We handle outreach,
-            negotiation, and deal closure — so you don’t have to.
+            Turn your ideas into earnings. Submit your client & project
+            information and let our team connect you & handle the deal.
+            We handle outreach, negotiation, and deal closure — so you don’t have to.
             <br /><br />
             You can earn upto{" "}
-            <span className="text-teal-400 font-semibold">20% commission</span>{" "}
+            <span className="text-teal-400 font-semibold">
+              20% commission
+            </span>{" "}
             <span className="text-white/60">
               (paid only after a successful deal as per policy)
             </span>, ensuring you earn maximum value with zero upfront cost.
@@ -123,15 +144,23 @@ export default function SellProject() {
           />
 
           {/* PROJECT */}
-          <textarea
-            name="project"
-            placeholder="Describe your project..."
-            rows={5}
-            value={form.project}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 focus:border-teal-400 outline-none"
-          />
+          <div>
+            <textarea
+              name="project"
+              placeholder="Describe your project..."
+              rows={5}
+              maxLength={100}
+              value={form.project}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 focus:border-teal-400 outline-none"
+            />
+
+            {/* Character Counter */}
+            <p className="text-xs text-gray-400 text-right mt-1">
+              {form.project.length}/100
+            </p>
+          </div>
 
           {/* SUBMIT BUTTON */}
           <button
@@ -139,17 +168,17 @@ export default function SellProject() {
             disabled={loading}
             className="w-full py-3 rounded-lg bg-gradient-to-r from-teal-400 to-cyan-400 text-black font-bold flex items-center justify-center gap-2 hover:opacity-90 transition"
           >
-            {loading ? "Opening Email..." : "Submit Project"}
+            {loading ? "Submitting..." : "Submit Project"}
             <Send size={16} />
           </button>
 
-          {/* SUCCESS MESSAGE */}
-          {success && (
-            <p className="text-green-400 text-sm text-center">
-              Your email app has been opened. Please click send to complete your submission.
-            </p>
-          )}
         </form>
+
+        {success && (
+    <p className="text-green-400 text-center mt-4">
+    Project submitted successfully 
+    </p>
+     )}
 
         {/* CONTACT OPTIONS */}
         <div className="mt-10 text-center space-y-4">
@@ -179,6 +208,7 @@ export default function SellProject() {
             </a>
 
           </div>
+
         </div>
 
       </div>

@@ -1,48 +1,59 @@
 import { motion } from "framer-motion";
 
 const clients = [
-  "Colio",
-  "Dmart",
-  "Anumati",
-  "Aiwedia",
-  "Zaykaur",
-  "Paridhan",
-  "Fun and Earn",
-  "VKSK",
+  "Colio", "Dreamart", "Annumati", "Aiwedia",
+  "Zaykaur", "Paridhan", "Fun and Earn", "VKSK","RK_Associates_website"
 ];
 
 export default function ClientsSlider() {
   return (
-    <section className="bg-black text-white py-20 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-
-        {/* Heading */}
-        <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
-          Trusted by Leading Brands
-        </h2>
-        <p className="mt-4 text-gray-400">
-          Our clients trust us to deliver excellence and innovation.
-        </p>
+    <section className="bg-black text-white py-24 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 text-center mb-16">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-6xl font-bold tracking-tighter bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent"
+        >
+          Trusted by Growing Businesses
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto"
+        >
+          Our clients trust us to deliver excellence and innovation across every digital touchpoint.
+        </motion.p>
       </div>
 
-      {/* Slider */}
-      <div className="mt-16 relative w-full overflow-hidden">
+      {/* Slider Container with Gradient Masks */}
+      <div className="relative flex overflow-hidden group">
+        {/* Left & Right Fades (Glass effect) */}
+        <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
         <motion.div
-          className="flex gap-16 whitespace-nowrap"
+          className="flex gap-12 md:gap-24 items-center whitespace-nowrap px-4"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 30, // Slower is usually classier
+            ease: "linear" 
+          }}
+          // Pause on hover is a nice UX touch
+          whileHover={{ animationPlayState: "paused" }}
         >
           {[...clients, ...clients].map((client, index) => (
-            <div
+            <span
               key={index}
-              className="text-xl md:text-2xl font-medium text-gray-500 hover:text-white transition"
+              className="text-2xl md:text-4xl font-bold text-gray-600 hover:text-white transition-colors duration-300 cursor-default select-none tracking-tight"
             >
               {client}
-            </div>
+            </span>
           ))}
         </motion.div>
-
       </div>
     </section>
   );

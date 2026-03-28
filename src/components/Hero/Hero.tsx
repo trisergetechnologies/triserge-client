@@ -1,157 +1,243 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-  useEffect(() => {
-    const sendDebug = (
-      hypothesisId: string,
-      message: string,
-      data: Record<string, unknown>
-    ) => {
-      // #region agent log
-      fetch("http://127.0.0.1:7651/ingest/6ea6f721-ca9f-4e1f-92a3-eba833bb2b17", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Debug-Session-Id": "011536",
-        },
-        body: JSON.stringify({
-          sessionId: "011536",
-          runId: "pre-fix",
-          hypothesisId,
-          location: "src/components/Hero/Hero.tsx:7",
-          message,
-          data,
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
-    };
-
-    const section = document.querySelector("section");
-    sendDebug("H3", "hero-mount-width-snapshot", {
-      innerWidth: window.innerWidth,
-      htmlClientWidth: document.documentElement.clientWidth,
-      htmlScrollWidth: document.documentElement.scrollWidth,
-      bodyClientWidth: document.body.clientWidth,
-      bodyScrollWidth: document.body.scrollWidth,
-      sectionClientWidth: (section as HTMLElement | null)?.clientWidth ?? null,
-      sectionScrollWidth: (section as HTMLElement | null)?.scrollWidth ?? null,
-    });
-
-    requestAnimationFrame(() => {
-      const sectionRaf = document.querySelector("section");
-      sendDebug("H4", "hero-first-raf-width-snapshot", {
-        innerWidth: window.innerWidth,
-        htmlClientWidth: document.documentElement.clientWidth,
-        htmlScrollWidth: document.documentElement.scrollWidth,
-        bodyClientWidth: document.body.clientWidth,
-        bodyScrollWidth: document.body.scrollWidth,
-        sectionClientWidth:
-          (sectionRaf as HTMLElement | null)?.clientWidth ?? null,
-        sectionScrollWidth:
-          (sectionRaf as HTMLElement | null)?.scrollWidth ?? null,
-      });
-    });
-  }, []);
-
   return (
-    <section className="relative w-full min-h-[100dvh] bg-[#050505] text-white flex items-center overflow-hidden font-sans selection:bg-indigo-500/30">
-      
-      {/* 1. Background Layers */}
+    <section className="relative w-full min-h-screen pt-12 md:pt-16 bg-[#050505] text-white flex items-center overflow-hidden font-sans selection:bg-indigo-500/30">
+
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        {/* Main Radial Glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#1a1a1a_0%,transparent_70%)] md:bg-[radial-gradient(circle_at_50%_50%,#1a1a1a_0%,transparent_100%)]" />
-        {/* Noise Overlay */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+
+        {/* Radial Glow */}
+        <div className="absolute inset-0 
+          bg-[radial-gradient(circle_at_50%_40%,#1a1a1a_0%,transparent_70%)] 
+          md:bg-[radial-gradient(circle_at_50%_50%,#1a1a1a_0%,transparent_100%)]" 
+        />
+
+        {/* Noise */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none 
+          bg-[url('https://grainy-gradients.vercel.app/noise.svg')] 
+          mix-blend-overlay" 
+        />
+
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 md:py-0 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        {/* Left Column: Typography */}
-        <div className="lg:col-span-8 flex flex-col justify-center">
-         
+      {/* Main Layout */}
+      <div className="relative z-10 
+        max-w-7xl 
+        mx-auto 
+        px-5 sm:px-6 md:px-8 
+        py-16 md:py-20 
+        w-full 
+        grid 
+        grid-cols-1 
+        lg:grid-cols-12 
+        gap-12 
+        items-center"
+      >
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-tight"
-          >
-            Crafting <span className="italic font-serif text-gray-400">Digital</span> <br className="hidden sm:block" />
-            <span className="font-semibold bg-gradient-to-b from-white via-white to-gray-500 bg-clip-text text-transparent">
-              Architectures.
-            </span>
-          </motion.h1>
+        {/* LEFT CONTENT */}
+<div className="lg:col-span-8 flex flex-col justify-center">
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mt-6 md:mt-8 text-gray-400 max-w-md md:max-w-lg text-base md:text-xl leading-relaxed font-light"
-          >
-           At Triserge Technologies, we transform ideas into powerful digital products.
-           We strip away complexity to design high-performance eCommerce platforms, web applications, and mobile apps that deliver seamless user experiences and measurable business growth.
-          </motion.p>
+  {/* Heading */}
+  <motion.h1
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.9, delay: 0.2 }}
+  className="
+    text-[55px]
+    xs:text-[60px]
+    sm:text-6xl
+    md:text-7xl
+    lg:text-8xl
+    xl:text-[110px]
+    font-light
+    leading-[1.05]
+    tracking-[-0.03em]
+  "
+>
+  Crafting{" "}
+  <span className="italic font-serif text-gray-400">
+    Digital
+  </span>
 
-          {/* Mobile CTA (Optional but recommended for UX) */}
-          <motion.div 
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             transition={{ delay: 0.7 }}
-             className="mt-10 lg:hidden"
-          >
-            
-          </motion.div>
-        </div>
+  <br />
 
-        {/* Right Column: Decorative Element */}
-        {/* On mobile, this becomes a subtle floating background element */}
-        <motion.div 
+  <span className="font-semibold bg-gradient-to-b from-white via-white to-gray-500 bg-clip-text text-transparent">
+    Architectures
+  </span>
+</motion.h1>
+
+  {/* Paragraph */}
+  <motion.p
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1, delay: 0.5 }}
+    className="
+      mt-6 md:mt-10
+      text-gray-300
+      max-w-full sm:max-w-lg md:max-w-2xl
+      text-base sm:text-lg md:text-xl lg:text-2xl
+      leading-relaxed
+      font-light
+    "
+  >
+    At Triserge Technologies, we turn ideas into fast, scalable digital products 
+    that drive real business growth. As a passionate startup, we thrive on 
+    innovation, agility, and creativity—helping businesses transform concepts 
+    into impactful solutions.
+  </motion.p>
+
+  {/* Optional CTA Buttons (HIGHLY recommended for premium feel) */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.8 }}
+    className="mt-8 flex flex-wrap gap-4"
+  >
+      <Link
+    to="/contact"
+    className="px-6 py-3 rounded-full 
+               bg-teal-500 hover:bg-teal-400
+               text-black 
+               text-sm sm:text-base 
+               font-medium 
+               hover:scale-105 
+               transition-all duration-300"
+  >
+    Get Started
+  </Link>
+
+  </motion.div>
+
+</div>
+
+        {/* RIGHT CIRCLE */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="lg:col-span-4 flex justify-center lg:justify-end items-center"
+          transition={{ duration: 1.5 }}
+          className="
+            lg:col-span-4
+            flex
+            justify-center 
+            lg:justify-end
+            items-center
+          "
         >
-          <div className="relative w-48 h-48 md:w-64 md:h-96 border border-white/10 rounded-full flex items-center justify-center p-4 backdrop-blur-[2px]">
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border-t border-indigo-500/40 rounded-full"
-              />
-              <motion.div 
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-4 border-b border-white/5 rounded-full"
-              />
-              <p className="text-center text-[9px] md:text-xs tracking-[0.4em] text-gray-400 uppercase leading-loose">
-                Innovation <br /> • <br /> Design <br /> • <br /> Strategy
-              </p>
+
+          <div className="
+            relative
+            w-40 h-40
+            sm:w-48 sm:h-48
+            md:w-56 md:h-56
+            lg:w-64 lg:h-64
+            border border-white/10
+            rounded-full
+            flex
+            items-center
+            justify-center
+            p-4
+            backdrop-blur-[2px]
+          ">
+
+            {/* Outer Rotate */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute inset-0 border-t border-indigo-500/40 rounded-full"
+            />
+
+            {/* Inner Rotate */}
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute inset-4 border-b border-white/5 rounded-full"
+            />
+
+            {/* Text */}
+            <p className="
+              text-center
+              text-[8px]
+              sm:text-[9px]
+              md:text-xs
+              tracking-[0.35em]
+              text-gray-400
+              uppercase
+              leading-loose
+            ">
+              Innovation <br /> • <br /> Design <br /> • <br /> Strategy
+            </p>
+
           </div>
+
         </motion.div>
+
       </div>
 
-      {/* 2. Bottom "Trust Bar" - Responsive layout */}
-      <motion.div 
+      {/* Bottom Bar */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="absolute bottom-8 md:bottom-12 left-6 right-6 flex flex-row justify-between items-center border-t border-white/5 pt-8"
+        className="
+          absolute 
+          bottom-6 md:bottom-10
+          left-5 right-5
+          flex 
+          justify-between 
+          items-center
+          border-t border-white/5
+          pt-6
+        "
       >
-        <div className="flex items-center gap-2 group cursor-default">
+
+        {/* Scroll */}
+        <div className="flex items-center gap-2">
+
           <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-          <span className="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">
+
+          <span className="
+            text-[9px]
+            sm:text-[10px]
+            uppercase
+            tracking-widest
+            text-gray-500
+          ">
             Scroll to explore
           </span>
+
         </div>
 
+        {/* Tags */}
         <div className="hidden sm:flex gap-6 md:gap-8">
+
           {["Strategy", "Design", "Dev"].map((item) => (
-            <span key={item} className="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-tighter">
+            <span
+              key={item}
+              className="
+                text-[10px]
+                md:text-xs
+                font-medium
+                text-gray-500
+                uppercase
+                tracking-tight
+              "
+            >
               {item}
             </span>
           ))}
+
         </div>
+
       </motion.div>
 
     </section>

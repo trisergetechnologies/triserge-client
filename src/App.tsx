@@ -8,11 +8,13 @@ import Contact from "./headerpage/Contact";
 import Home from "./pages/Home";
 import Team from "./headerpage/Team";
 import { Toaster } from "react-hot-toast";
+import ScrollToTop from "./components/scroll/ScrollToTop";
 
 export default function App() {
   return (
     <>
       <Toaster position="top-center" />
+      <ScrollToTop/>
 
       <Routes>
         <Route element={<Layout />}>

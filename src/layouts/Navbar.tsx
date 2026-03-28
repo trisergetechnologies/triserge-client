@@ -35,7 +35,7 @@ const SOCIALS = [
   },
   {
     icon: Linkedin,
-    url: "https://www.linkedin.com/",
+    url: "https://www.linkedin.com/company/triserge-technologies/posts/?feedView=all",
   },
 ];
 
@@ -118,13 +118,8 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 w-full z-[100]">
       {/* ================= TOP BAR ================= */}
 
-      <div
-        className={`bg-black/95 text-white hidden md:block transition-all duration-500 ${
-          scrolled
-            ? "opacity-0 -translate-y-full pointer-events-none"
-            : "opacity-100 border-b border-white/10"
-        }`}
-      >
+       <div className="bg-black/95 text-white hidden md:block border-b border-white/10">
+
         <div className="max-w-7xl mx-auto px-6 h-10 flex justify-between items-center text-[10px] uppercase tracking-[0.2em]">
           <div className="flex items-center gap-8">
             <a
@@ -166,7 +161,7 @@ export default function Navbar() {
 
       {/* ================= MAIN NAV ================= */}
 
-      <nav className="px-3 sm:px-6 py-4">
+      <nav className="px-3 sm:px-6 py-0">
         <div
           className={`max-w-7xl mx-auto px-6 rounded-2xl border transition-all duration-300 ${
             scrolled
@@ -174,7 +169,7 @@ export default function Navbar() {
               : "bg-transparent border-transparent"
           }`}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between py-2">
             {/* LOGO */}
 
             <Link

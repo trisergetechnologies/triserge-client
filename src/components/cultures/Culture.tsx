@@ -12,12 +12,12 @@ const cultureData = [
     title: "Empowering Offline Businesses",
     desc: "Our core mission is to help traditional and offline businesses go digital with affordable, high-quality solutions that unlock growth and new opportunities. We bridge the gap between physical operations and digital transformation.",
     img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774548797/business_hduu5x.jpg",
-    additionalContent: "We've successfully digitized over 200+ local businesses, helping them increase revenue by an average of 150% through custom e-commerce platforms, digital payment integration, and automated inventory management systems."
+    additionalContent: "We've successfully digitized over 9+ local businesses, helping them increase revenue by an average of 80% through custom e-commerce platforms, digital payment integration, and SEO."
   },
   {
     title: "People Centric",
     desc: "We put people first—our clients and our team. We build meaningful relationships and create solutions that truly solve real-world problems. Every decision we make starts with understanding human needs and experiences.",
-    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774552360/centric_p5t2bm.jpg",
     additionalContent: "Our client retention rate stands at 95%, a testament to our commitment to genuine relationships. We offer flexible work arrangements, mental health support, and continuous learning opportunities to ensure our team thrives both personally and professionally."
   },
   {
@@ -29,25 +29,25 @@ const cultureData = [
   {
     title: "Continuous Growth",
     desc: "We believe in constant learning, rapid adaptation, and evolving with the industry to stay relevant and competitive. What worked yesterday may not work tomorrow, so we stay curious and adaptable.",
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774552673/Gemini_Generated_Image_c9o3hpc9o3hpc9o3_fnccpm.png",
     additionalContent: "We allocate 10% of work hours to skill development and cross-training. Our weekly knowledge-sharing sessions, tech talks, and certification programs ensure our team stays ahead of industry trends and masters emerging technologies."
   },
   {
     title: "Affordable Excellence",
     desc: "We combine quality with affordability, ensuring that startups and small businesses can access premium digital solutions without high costs. We believe great technology shouldn't be a luxury reserved for enterprises.",
-    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774638879/Affordable_Excellence_ba51zi.jpg",
     additionalContent: "Our flexible pricing models and scalable solutions allow businesses to start small and grow without technical debt. We offer free consultations, transparent pricing, and ROI-focused development to ensure every client gets maximum value from their investment."
   },
   {
     title: "Transparency & Trust",
     desc: "We operate with complete transparency in pricing, timelines, and processes. Our clients always know what's happening behind the scenes, and we build trust through consistent, honest communication.",
-    img: "https://images.unsplash.com/photo-1557804506-669a67965ba0",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774552844/Transparency_Trust_bkwc22.jpg",
     additionalContent: "We provide real-time project dashboards, weekly progress reports, and open communication channels. No hidden fees, no unexpected delays without clear communication—just honest partnerships built on mutual respect."
   },
   {
     title: "Agile & Adaptable",
     desc: "We embrace agile methodologies that allow us to pivot quickly based on client feedback and market changes. Flexibility isn't just a buzzword—it's how we deliver better results faster.",
-    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774553356/Agile_Adaptable_bek6jh.jpg",
     additionalContent: "Our two-week sprint cycles ensure rapid iteration and continuous improvement. We welcome changing requirements and view them as opportunities to deliver more value, not obstacles to overcome."
   },
  

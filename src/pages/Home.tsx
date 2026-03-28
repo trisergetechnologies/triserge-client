@@ -4,6 +4,7 @@ import Mission from "../components/ourmission/Mission";
 import ClientsSlider from "../components/ourclinets/ClientsSlider";
 import Experience from "../components/ourexperties/Experience";
 
+
 export default function Home() {
   return (
     <>
@@ -11,7 +12,8 @@ export default function Home() {
       <Culture/>
       <Mission/>
       <Experience/>
-   <ClientsSlider/>
+     <ClientsSlider/>
+   
     </>
   );
 }

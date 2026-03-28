@@ -20,7 +20,12 @@ const techStack = [
   "AWS",
   "GCP",
   "Redis",
-  "Kafka"
+  "Kafka",
+  "React Native",
+  "Docker",      
+  "TypeScript",  
+  "PostgreSQL",  
+  "Firebase",    
 ];
 
 export default function Experience() {
@@ -49,7 +54,7 @@ export default function Experience() {
           We combine modern technologies with proven strategies to deliver scalable and high-performance digital solutions.
         </motion.p>
 
-        {/* Skills */}
+        {/* Skills Grid */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6">
           {skills.map((skill, index) => (
             <motion.div
@@ -58,31 +63,34 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="p-6 bg-black/30 border border-[#6b6b6b] rounded-xl hover:bg-black/50 transition backdrop-blur"
+              className="p-6 bg-black/30 border border-[#6b6b6b] rounded-xl hover:bg-black/50 transition backdrop-blur flex items-center justify-center font-medium"
             >
               {skill}
             </motion.div>
           ))}
         </div>
 
-        {/* Tech Stack */}
+        {/* Tech Stack - Flex layout handles 16 items perfectly */}
         <div className="mt-20">
-          <h3 className="text-xl text-gray-200 mb-8 font-semibold">Technologies We Use</h3>
+          <h3 className="text-xl text-gray-200 mb-8 font-semibold uppercase tracking-wider">
+            Technologies We Use
+          </h3>
 
           <motion.div
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {techStack.map((tech, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="px-5 py-2 border border-[#6b6b6b] rounded-full text-sm text-gray-200 hover:border-white hover:text-white transition bg-black/30 backdrop-blur"
+                whileHover={{ scale: 1.05 }}
+                className="px-6 py-2 border border-[#6b6b6b] rounded-full text-sm text-gray-200 hover:border-white hover:text-white transition bg-black/30 backdrop-blur cursor-default"
               >
                 {tech}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
