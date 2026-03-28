@@ -181,7 +181,7 @@ export default function Navbar() {
 <img
   src="/images/logo/Triserge_Logo.png"
   alt="Triserge Logo"
-  className="h-26 md:h-26 w-auto max-w-[150px] object-contain
+  className="h-26 md:h-26  w-auto max-w-[150px] object-contain
   transition-transform duration-500 group-hover:scale-105"
 />
 </Link>
