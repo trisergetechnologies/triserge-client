@@ -163,15 +163,15 @@ export default function Navbar() {
 
       {/* ================= MAIN NAV ================= */}
 
-      <nav className="px-3 sm:px-6 py-0">
-        <div
-          className={`max-w-7xl mx-auto px-6 rounded-2xl border transition-all duration-300 ${
-            scrolled
-              ? "bg-black/80 backdrop-blur-xl border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
-              : "bg-transparent border-transparent"
-          }`}
-        >
-   <div className="flex items-center justify-between py-0">
+     <nav className="w-full py-0">
+  <div
+    className={`w-full px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+      scrolled
+        ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+        : "bg-transparent border-transparent"
+    }`}
+  >
+    <div className="max-w-7xl mx-auto flex items-center justify-between">
             {/* LOGO */}
 
            <Link

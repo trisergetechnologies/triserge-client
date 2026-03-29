@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 
 export default function Hero() {
   return (
@@ -87,28 +87,6 @@ export default function Hero() {
     innovation, agility, and creativity—helping businesses transform concepts 
     into impactful solutions.
   </motion.p>
-
-  {/* Optional CTA Buttons (HIGHLY recommended for premium feel) */}
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.8 }}
-    className="mt-8 flex flex-wrap gap-4"
-  >
-      <Link
-    to="/contact"
-    className="px-6 py-3 rounded-full 
-               bg-teal-500 hover:bg-teal-400
-               text-black 
-               text-sm sm:text-base 
-               font-medium 
-               hover:scale-105 
-               transition-all duration-300"
-  >
-    Get Started
-  </Link>
-
-  </motion.div>
 
 </div>
 
