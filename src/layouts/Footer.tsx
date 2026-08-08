@@ -133,7 +133,7 @@ export default function Footer() {
                 <MapPin size={16} className="text-teal-400" />
 
                 <a
-                  href="https://www.google.com/maps?q=Plot+No.+158+Gyan+Khand+II+Indirapuram+Ghaziabad+Uttar+Pradesh+India"
+                  href="https://maps.app.goo.gl/URRnwyEMEb4qbLTS9"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-teal-300 transition"
@@ -192,7 +192,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <p className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-medium text-gray-500">
-              © {new Date().getFullYear()} TRISERGE. All rights reserved.
+             © {new Date().getFullYear()} TRISERGE TECHNOLOGIES PRIVATE LIMITED. All rights reserved.
             </p>
           </div>
 

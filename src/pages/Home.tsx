@@ -3,7 +3,9 @@ import Culture from "../components/cultures/Culture";
 import Mission from "../components/ourmission/Mission";
 import ClientsSlider from "../components/ourclinets/ClientsSlider";
 import Experience from "../components/ourexperties/Experience";
+// import WhatsAppButton from "../whatsapp/WhatsAppButton";
 
+import Chatbot from "../chatboat/Chatbot";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <Mission/>
       <Experience/>
      <ClientsSlider/>
+     {/* <WhatsAppButton/> */}
+     <Chatbot/>
    
     </>
   );

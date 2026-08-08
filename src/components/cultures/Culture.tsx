@@ -1,170 +1,210 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+"use client";
 
-const cultureData = [
+import { motion } from "framer-motion";
+import PremiumGallery from "../../ui/PremiumGallery";
+
+interface CultureItem {
+  title: string;
+  desc: string;
+  additionalContent: string;
+}
+
+const cultureData: CultureItem[] = [
   {
     title: "Innovation First",
-    desc: "At Triserge, we constantly explore new technologies to build modern, scalable web and app solutions that keep businesses ahead in the digital era. From AI-driven automation to cutting-edge frameworks, we embrace what's next.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774548684/innovative_druxi6.jpg",
-    additionalContent: "We dedicate 20% of our resources to R&D, ensuring we're always at the forefront of technological advancements. Our innovation lab experiments with emerging tech like Web3, IoT, and machine learning to deliver future-ready solutions."
+    desc: "At Triserge, we constantly explore new technologies to build modern, scalable web and app solutions that keep businesses ahead in the digital era.",
+    additionalContent:
+      "From AI-driven automation to modern frameworks, we continuously explore better ways to solve problems and create meaningful digital experiences.",
   },
   {
     title: "Empowering Offline Businesses",
-    desc: "Our core mission is to help traditional and offline businesses go digital with affordable, high-quality solutions that unlock growth and new opportunities. We bridge the gap between physical operations and digital transformation.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774548797/business_hduu5x.jpg",
-    additionalContent: "We've successfully digitized over 9+ local businesses, helping them increase revenue by an average of 80% through custom e-commerce platforms, digital payment integration, and SEO."
+    desc: "We help traditional and offline businesses move into the digital world with practical, affordable, and high-quality technology solutions.",
+    additionalContent:
+      "Our approach focuses on understanding how a business operates today and then using technology to make those operations more efficient and scalable.",
   },
   {
     title: "People Centric",
-    desc: "We put people first—our clients and our team. We build meaningful relationships and create solutions that truly solve real-world problems. Every decision we make starts with understanding human needs and experiences.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774552360/centric_p5t2bm.jpg",
-    additionalContent: "Our client retention rate stands at 95%, a testament to our commitment to genuine relationships. We offer flexible work arrangements, mental health support, and continuous learning opportunities to ensure our team thrives both personally and professionally."
+    desc: "We put people first—our clients, users, and team. Every solution starts with understanding real people and the problems they face.",
+    additionalContent:
+      "Technology is only valuable when it makes people's lives easier.",
   },
   {
     title: "Ownership Mindset",
-    desc: "We take full responsibility for our work, act like owners, and stay committed to delivering results with accountability and precision. No task is too small, and no challenge is too big when we approach it with ownership.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774550717/owns_vikhfl.jpg",
-    additionalContent: "Every team member has direct visibility into project outcomes and client satisfaction metrics. We encourage proactive problem-solving and celebrate team members who go above and beyond to ensure project success, regardless of their formal role."
+    desc: "We take responsibility for our work and remain accountable for the outcomes we deliver.",
+    additionalContent:
+      "We encourage proactive thinking, problem solving, and taking responsibility beyond simply completing assigned tasks.",
   },
   {
     title: "Continuous Growth",
-    desc: "We believe in constant learning, rapid adaptation, and evolving with the industry to stay relevant and competitive. What worked yesterday may not work tomorrow, so we stay curious and adaptable.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774552673/Gemini_Generated_Image_c9o3hpc9o3hpc9o3_fnccpm.png",
-    additionalContent: "We allocate 10% of work hours to skill development and cross-training. Our weekly knowledge-sharing sessions, tech talks, and certification programs ensure our team stays ahead of industry trends and masters emerging technologies."
+    desc: "We believe in constant learning, experimentation, and adapting to an industry that never stops changing.",
+    additionalContent:
+      "We continuously improve our technical skills, processes, and understanding of emerging technologies.",
   },
   {
     title: "Affordable Excellence",
-    desc: "We combine quality with affordability, ensuring that startups and small businesses can access premium digital solutions without high costs. We believe great technology shouldn't be a luxury reserved for enterprises.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774638879/Affordable_Excellence_ba51zi.jpg",
-    additionalContent: "Our flexible pricing models and scalable solutions allow businesses to start small and grow without technical debt. We offer free consultations, transparent pricing, and ROI-focused development to ensure every client gets maximum value from their investment."
+    desc: "We believe high-quality technology should be accessible to startups, small businesses, and growing companies.",
+    additionalContent:
+      "Our goal is to deliver strong engineering and thoughtful design without unnecessary complexity or excessive costs.",
   },
   {
     title: "Transparency & Trust",
-    desc: "We operate with complete transparency in pricing, timelines, and processes. Our clients always know what's happening behind the scenes, and we build trust through consistent, honest communication.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774552844/Transparency_Trust_bkwc22.jpg",
-    additionalContent: "We provide real-time project dashboards, weekly progress reports, and open communication channels. No hidden fees, no unexpected delays without clear communication—just honest partnerships built on mutual respect."
+    desc: "We believe strong partnerships are built through honest communication, clear expectations, and transparency.",
+    additionalContent:
+      "From timelines and pricing to technical decisions, clients should always understand what is happening and why.",
   },
   {
     title: "Agile & Adaptable",
-    desc: "We embrace agile methodologies that allow us to pivot quickly based on client feedback and market changes. Flexibility isn't just a buzzword—it's how we deliver better results faster.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774553356/Agile_Adaptable_bek6jh.jpg",
-    additionalContent: "Our two-week sprint cycles ensure rapid iteration and continuous improvement. We welcome changing requirements and view them as opportunities to deliver more value, not obstacles to overcome."
+    desc: "We stay flexible and respond quickly when requirements, customer needs, or market conditions change.",
+    additionalContent:
+      "Our development approach allows ideas to evolve throughout a project.",
   },
- 
   {
     title: "Quality Craftsmanship",
-    desc: "We take pride in writing clean, maintainable code and designing intuitive experiences. Every pixel, every line of code, and every user interaction is crafted with care and attention to detail.",
-    img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774549119/craftsman_gvxjgz.jpg",
-    additionalContent: "Our quality assurance process includes peer code reviews, automated testing, user experience testing, and performance optimization. We don't consider a project complete until it meets our exacting standards of excellence."
-  }
+    desc: "We care about the details—from clean code and performance to intuitive interfaces and reliable experiences.",
+    additionalContent:
+      "We believe quality is not a final step in development. It is something considered throughout the entire process.",
+  },
+];
+
+const cultureImages = [
+  {
+    src: "heimage/invoationfirst.jpg",
+    title: "Innovation First",
+    category: "Our Culture",
+    description:
+      "We explore new technologies and modern solutions to build future-ready digital experiences.",
+  },
+  {
+    src: "heimage/craft.jpg",
+    title: "Quality Craftsmanship",
+    category: "Our Culture",
+    description:
+      "We care about the details, from clean engineering to intuitive design and reliable experiences.",
+  },
+  {
+    src: "heimage/people.jpg",
+    title: "People Centric",
+    category: "Our Culture",
+    description:
+      "We put people first—our clients, users, and team.",
+  },
+  {
+    src: "heimage/ContinuousGrowth.jpg",
+    title: "Continuous Growth",
+    category: "Our Culture",
+    description:
+      "We continuously learn, experiment, and adapt to a changing technology landscape.",
+  },
+  {
+    src: "heimage/trust.jpg",
+    title: "Transparency & Trust",
+    category: "Our Culture",
+    description:
+      "We build strong partnerships through honest communication and transparency.",
+  },
 ];
 
 export default function Culture() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   return (
-    <section className="bg-[#0f0f0f] text-white px-6 py-10 overflow-x-hidden font-[Inter]">
-      <div className="max-w-6xl mx-auto">
+    <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-20 md:py-28 bg-white">
+      <div className="mx-auto w-full max-w-[1400px]">
 
-        {/* Heading */}
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="w-full max-w-6xl"
         >
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-  Our <span className="text-teal-400">Culture</span>
-</h1>
+          <div className="mb-6 flex items-center gap-4">
+            <span className="h-px w-10 bg-indigo-600" />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal-400">
+              Our Culture
+            </p>
+          </div>
 
-          <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            The values and mindset that define how we build, collaborate, and grow.
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-[-0.04em] text-gray-900">
+            What defines
+            <br />
+            <span className="text-teal-400">how we work.</span>
+          </h2>
+
+          <p className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-gray-500">
+            Our culture shapes how we think, collaborate, solve problems,
+            and create lasting value for the businesses we work with.
           </p>
         </motion.div>
 
-        {/* Sections */}
-        <div className="mt-28 space-y-36">
-          {cultureData.map((item, index) => {
-            const isReverse = index % 2 !== 0;
-            const isOpen = activeIndex === index;
-
-            return (
-              <div
-                key={index}
-                className={`flex flex-col md:flex-row items-center gap-14 ${
-                  isReverse ? "md:flex-row-reverse" : ""
-                }`}
-              >
-
-                {/* Image */}
-                <motion.div
-                  initial={{ opacity: 0, x: isReverse ? 120 : -120, rotate: -4 }}
-                  whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-                  transition={{ duration: 1 }}
-                  viewport={{ once: true }}
-                  animate={{ y: [0, -8, 0] }}
-                  className="w-full md:w-1/2"
-                >
-                  <div className="relative group overflow-hidden rounded-3xl border border-white/10 backdrop-blur-md">
-
-                    <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition duration-500 blur-2xl" />
-
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-full h-[340px] object-cover transform group-hover:scale-110 transition duration-700"
-                    />
-                  </div>
-                </motion.div>
-
-                {/* Text */}
-                <motion.div
-                  initial={{ opacity: 0, x: isReverse ? -100 : 100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.9 }}
-                  viewport={{ once: true }}
-                  className="w-full md:w-1/2"
-                >
-                  <h3 className="text-3xl md:text-4xl font-semibold tracking-tight mb-5">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-gray-400 text-lg md:text-xl leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-
-                  {/* Expandable Content */}
-                  <div className="mt-4">
-                    <button
-                      onClick={() =>
-                        setActiveIndex(isOpen ? null : index)
-                      }
-                      className="text-indigo-400 text-sm hover:text-indigo-300 transition"
-                    >
-                      {isOpen ? "Show less -" : "Read more +"}
-                    </button>
-
-                    {isOpen && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        className="mt-4 text-gray-500 text-base leading-relaxed"
-                      >
-                        {item.additionalContent}
-                      </motion.p>
-                    )}
-                  </div>
-
-                </motion.div>
-
-              </div>
-            );
-          })}
+        {/* GALLERY */}
+        <div className="mt-20 md:mt-28 w-full">
+          <PremiumGallery images={cultureImages} />
         </div>
+
+        {/* LIST */}
+        <div className="mt-24 md:mt-36 border-t border-gray-200">
+          {cultureData.map((item, index) => (
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: (index % 2) * 0.05,
+              }}
+              viewport={{ once: true, amount: 0.15 }}
+              className="grid gap-6 border-b border-gray-200 py-8 md:grid-cols-12 md:gap-12 md:py-12"
+            >
+              {/* NUMBER */}
+              <div className="md:col-span-1">
+                <span className="text-sm font-semibold tracking-[0.15em] text-indigo-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* TITLE */}
+              <div className="md:col-span-4">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-gray-900">
+                  {item.title}
+                </h3>
+              </div>
+
+              {/* DESCRIPTION */}
+              <div className="md:col-span-6">
+                <p className="max-w-2xl text-sm sm:text-base md:text-lg leading-7 text-gray-500">
+                  {item.desc}
+                </p>
+
+                <p className="mt-3 sm:mt-4 max-w-2xl text-xs sm:text-sm leading-6 text-gray-400">
+                  {item.additionalContent}
+                </p>
+              </div>
+
+              {/* ARROW */}
+              <div className="hidden md:col-span-1 md:block text-right">
+                <span className="text-xl text-gray-300">↗</span>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* CLOSING */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="mt-24 md:mt-32 border-t border-gray-200 pt-10 md:pt-12"
+        >
+          <p className="max-w-5xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight text-gray-900">
+            We don't just build digital products.
+            <span className="text-teal-400">
+              {" "}We build solutions that move businesses forward.
+            </span>
+          </p>
+        </motion.div>
 
       </div>
     </section>
   );
 }
-

@@ -10,21 +10,29 @@ import Team from "./headerpage/Team";
 import { Toaster } from "react-hot-toast";
 import ScrollToTop from "./components/scroll/ScrollToTop";
 
+
+
 export default function App() {
   return (
     <>
       <Toaster position="top-center" />
-      <ScrollToTop/>
+      <ScrollToTop />
 
       <Routes>
         <Route element={<Layout />}>
+
           <Route path="/" element={<Home />} />
+
+          {/* BLOG ROUTES ✅ */}
+         
+          {/* OTHER PAGES */}
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/sellproject" element={<SellProject />} />
           <Route path="/team" element={<Team />} />
+
         </Route>
       </Routes>
     </>

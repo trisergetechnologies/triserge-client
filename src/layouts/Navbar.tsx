@@ -24,6 +24,7 @@ const NAV_LINKS = [
   { name: "Services", href: "/services" },
   { name: "Contact", href: "/contact" },
   { name: "Our Team", href: "/team" },
+  
 ];
 
 const SOCIALS = [
@@ -214,13 +215,7 @@ export default function Navbar() {
                 Join Us
               </Link>
 
-              <Link
-                to="/sellproject"
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 text-black text-xs font-bold flex items-center gap-2 shadow-lg shadow-teal-500/30"
-              >
-                Sell Projects
-                <ArrowUpRight size={14} />
-              </Link>
+             
             </div>
 
             {/* MOBILE BUTTON */}

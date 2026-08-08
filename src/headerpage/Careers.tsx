@@ -17,6 +17,8 @@ import toast from "react-hot-toast";
 // ];
 const jobs: any[] = [];
 
+
+
 export default function Careers() {
 
   const [form, setForm] = useState({
@@ -191,7 +193,7 @@ export default function Careers() {
       );
 
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/careers`,
+        "https://triserge-backend.onrender.com/api/careers",
         {
           method: "POST",
           body: formData,

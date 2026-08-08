@@ -45,7 +45,7 @@ export default function Contact() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/contact`,
+        `https://triserge-backend.onrender.com/api/contact`,
         {
           method: "POST",
           headers: {
