@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-neutral-950  text-white px-6 py-50 selection:bg-teal-500/30">
+    <section className="min-h-screen bg-neutral-950 text-white px-6 py-50 selection:bg-teal-500/30">
       <div className="max-w-6xl mx-auto">
 
         {/* Header Section */}
@@ -17,14 +17,17 @@ export default function About() {
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
             About <span className="text-teal-400">Us</span>
           </h1>
+
           <div className="h-1.5 w-24 bg-teal-400 rounded-full mb-10"></div>
 
           <div className="grid md:grid-cols-2 gap-10">
             <p className="text-xl leading-relaxed text-slate-200">
               We are a modern digital solutions company focused on building
-              <span className="text-white font-semibold"> scalable platforms</span>,
-              high-performance applications, and intelligent systems that help
-              businesses thrive in the digital era.
+              <span className="text-white font-semibold">
+                {" "}scalable platforms
+              </span>
+              , high-performance applications, and intelligent systems that
+              help businesses thrive in the digital era.
             </p>
 
             <p className="text-lg leading-relaxed text-slate-300 border-l-2 border-slate-500 pl-6 italic">
@@ -51,8 +54,13 @@ export default function About() {
               viewport={{ once: true }}
               className="p-6 bg-black/30 border border-[#6b6b6b] rounded-xl text-center"
             >
-              <h3 className="text-2xl font-bold text-teal-400">{item.value}</h3>
-              <p className="text-sm text-slate-300 mt-1">{item.label}</p>
+              <h3 className="text-2xl font-bold text-teal-400">
+                {item.value}
+              </h3>
+
+              <p className="text-sm text-slate-300 mt-1">
+                {item.label}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -68,10 +76,14 @@ export default function About() {
             className="p-8 bg-black/30 border border-[#6b6b6b] rounded-2xl backdrop-blur hover:border-teal-400/50 transition"
           >
             <div className="text-3xl mb-4">🚀</div>
-            <h3 className="font-bold text-2xl mb-3">Mission</h3>
+
+            <h3 className="font-bold text-2xl mb-3">
+              Mission
+            </h3>
+
             <p className="text-slate-300 leading-relaxed">
-              To deliver high-impact digital solutions that empower businesses
-              to grow, innovate, and lead in their industries.
+              To deliver high-impact digital solutions that empower
+              businesses to grow, innovate, and lead in their industries.
             </p>
           </motion.div>
 
@@ -84,7 +96,11 @@ export default function About() {
             className="p-8 bg-black/30 border border-[#6b6b6b] rounded-2xl backdrop-blur hover:border-teal-400/50 transition"
           >
             <div className="text-3xl mb-4">🎯</div>
-            <h3 className="font-bold text-2xl mb-3">Vision</h3>
+
+            <h3 className="font-bold text-2xl mb-3">
+              Vision
+            </h3>
+
             <p className="text-slate-300 leading-relaxed">
               To become a trusted global technology partner known for
               innovation, reliability, and excellence.
@@ -100,28 +116,78 @@ export default function About() {
             className="p-8 bg-black/30 border border-[#6b6b6b] rounded-2xl backdrop-blur hover:border-teal-400/50 transition"
           >
             <div className="text-3xl mb-4">💡</div>
-            <h3 className="font-bold text-2xl mb-3">Values</h3>
+
+            <h3 className="font-bold text-2xl mb-3">
+              Values
+            </h3>
+
             <ul className="text-slate-300 space-y-2 font-medium">
+
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-teal-400 rounded-full"></span>
                 Innovation & Creativity
               </li>
+
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-teal-400 rounded-full"></span>
                 Quality & Performance
               </li>
+
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-teal-400 rounded-full"></span>
                 Transparency & Trust
               </li>
+
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-teal-400 rounded-full"></span>
                 Client-Centric Approach
               </li>
+
             </ul>
           </motion.div>
 
         </div>
+
+        {/* Company Information */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="mt-20 p-8 md:p-10 bg-black/30 border border-[#6b6b6b] rounded-2xl backdrop-blur"
+        >
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+
+            {/* Company Name */}
+            <div>
+              <p className="text-sm uppercase tracking-widest text-teal-400 mb-2">
+                Company Information
+              </p>
+
+              <h3 className="text-2xl md:text-3xl font-bold">
+                Triserge Technologies Private Limited
+              </h3>
+
+              <p className="text-slate-400 mt-2">
+                Registered Technology & Digital Solutions Company
+              </p>
+            </div>
+
+            {/* GSTIN */}
+            <div className="border border-slate-700 rounded-xl px-6 py-5 bg-white/5 min-w-[280px]">
+
+              <p className="text-sm text-slate-400 mb-1">
+                GST Identification Number
+              </p>
+
+              <p className="text-lg md:text-xl font-semibold text-white tracking-wide">
+                09AANCT4684P1Z7
+              </p>
+
+            </div>
+
+          </div>
+        </motion.div>
 
         {/* Closing Section */}
         <motion.div
@@ -133,6 +199,7 @@ export default function About() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Building the Future, Together
           </h2>
+
           <p className="text-slate-300 leading-relaxed">
             We don’t just build products — we build long-term partnerships.
             Our goal is to help your business scale faster, operate smarter,

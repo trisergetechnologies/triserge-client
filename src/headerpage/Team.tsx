@@ -18,7 +18,7 @@ const teamData = [
   },
   {
     name: "Krishna Kumar",
-    role: "Associate Software Developer",
+    role: "Software Developer",
     img: "https://res.cloudinary.com/dnmehmxz7/image/upload/v1774517761/krishnaphoto_wtafy2.jpg",
   },
 ];
